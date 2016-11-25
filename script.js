@@ -576,89 +576,173 @@ $(document).on('ready', function () {
           };
         };
       };
-
       };
 
+      //Turn three for Computer
       if (turn === 3) {
 
         //Checking for win
-           if (board[0][0] === 'x' && board[0][2] === 'x' ||
-               board[0][0] === 'x' && board[2][0] === 'x' ||
-               board[0][2] === 'x' && board[2][2] === 'x' ||
-               board[2][0] === 'x' && board[2][2] === 'x') {
-                 if (board[0][0] === 'x' && board[0][2] === 'x') {
-                  if (board[0][1] === false) {
-                    $('#b').css('cursor', 'default');
-                    $('#b').html('<p>X</p>');
-                    board[0][1] = 'x';
-                  };
-                  if (board[2][0] === false) {
-                    $('#g').css('cursor', 'default');
-                    $('#g').html('<p>X</p>');
-                    board[2][0] = 'x';
-                  };
-                  if (board[2][2] === false) {
-                    $('#i').css('cursor', 'default');
-                    $('#i').html('<p>X</p>');
-                    board[2][2] = 'x';
-                  };
-                 };
-                 if (board[0][0] === 'x' && board[2][0] === 'x') {
-                   if (board[1][0] === false) {
-                     $('#d').css('cursor', 'default');
-                     $('#d').html('<p>X</p>');
-                     board[1][0] = 'x';
+             if (board[0][0] === 'x' && board[0][2] === 'x' ||
+                 board[0][0] === 'x' && board[2][0] === 'x' ||
+                 board[0][2] === 'x' && board[2][2] === 'x' ||
+                 board[2][0] === 'x' && board[2][2] === 'x') {
+                   if (board[0][0] === 'x' && board[0][2] === 'x') {
+                    if (board[0][1] === false) {
+                      $('#b').css('cursor', 'default');
+                      $('#b').html('<p>X</p>');
+                      board[0][1] = 'x';
+                    } else if (board[2][0] === false) {
+                      $('#g').css('cursor', 'default');
+                      $('#g').html('<p>X</p>');
+                      board[2][0] = 'x';
+                    } else if (board[2][2] === false) {
+                      $('#i').css('cursor', 'default');
+                      $('#i').html('<p>X</p>');
+                      board[2][2] = 'x';
+                    };
+                  } else if (board[0][0] === 'x' && board[2][0] === 'x') {
+                     if (board[1][0] === false) {
+                       $('#d').css('cursor', 'default');
+                       $('#d').html('<p>X</p>');
+                       board[1][0] = 'x';
+                     } else if (board[0][2] === false) {
+                       $('#c').css('cursor', 'default');
+                       $('#c').html('<p>X</p>');
+                       board[0][2] = 'x';
+                     } else if (board[2][2] === false) {
+                       $('#i').css('cursor', 'default');
+                       $('#i').html('<p>X</p>');
+                       board[2][2] = 'x';
+                     };
+                   } else if (board[0][2] === 'x' && board[2][2] === 'x') {
+                     if (board[1][2] === false) {
+                       $('#f').css('cursor', 'default');
+                       $('#f').html('<p>X</p>');
+                       board[1][2] = 'x';
+                     } else if (board[0][0] === false) {
+                       $('#a').css('cursor', 'default');
+                       $('#a').html('<p>X</p>');
+                       board[0][0] = 'x';
+                     } else if (board[2][0] === false) {
+                       $('#g').css('cursor', 'default');
+                       $('#g').html('<p>X</p>');
+                       board[2][2] = 'x';
+                     };
+                   } else if (board[2][0] === 'x' && board[2][2] === 'x') {
+                     if (board[2][1] === false) {
+                       $('#h').css('cursor', 'default');
+                       $('#h').html('<p>X</p>');
+                       board[2][1] = 'x';
+                     } else if (board[0][0] === false) {
+                       $('#a').css('cursor', 'default');
+                       $('#a').html('<p>X</p>');
+                       board[0][0] = 'x';
+                     } else if (board[0][2] === false) {
+                       $('#c').css('cursor', 'default');
+                       $('#c').html('<p>X</p>');
+                       board[0][2] = 'x';
+                     };
                    };
-                   if (board[0][2] === false) {
-                     $('#c').css('cursor', 'default');
-                     $('#c').html('<p>X</p>');
-                     board[0][2] = 'x';
-                   };
-                   if (board[2][2] === false) {
-                     $('#i').css('cursor', 'default');
-                     $('#i').html('<p>X</p>');
-                     board[2][2] = 'x';
-                   };
-                 };
-                 if (board[0][2] === 'x' && board[2][2] === 'x') {
-                   if (board[1][2] === false) {
-                     $('#f').css('cursor', 'default');
-                     $('#f').html('<p>X</p>');
-                     board[1][2] = 'x';
-                   };
-                   if (board[0][0] === false) {
-                     $('#a').css('cursor', 'default');
-                     $('#a').html('<p>X</p>');
-                     board[0][0] = 'x';
-                   };
-                   if (board[2][0] === false) {
-                     $('#g').css('cursor', 'default');
-                     $('#g').html('<p>X</p>');
-                     board[2][2] = 'x';
-                   };
-                 };
-                 if (board[2][0] === 'x' && board[2][2] === 'x') {
-                   if (board[2][1] === false) {
-                     $('#h').css('cursor', 'default');
-                     $('#h').html('<p>X</p>');
-                     board[2][1] = 'x';
-                   };
-                   if (board[0][0] === false) {
-                     $('#a').css('cursor', 'default');
-                     $('#a').html('<p>X</p>');
-                     board[0][0] = 'x';
-                   };
-                   if (board[0][2] === false) {
-                     $('#c').css('cursor', 'default');
-                     $('#c').html('<p>X</p>');
-                     board[0][2] = 'x';
-                   };
-                 };
-           };
+             } else if (board[0][1] === 'x' && board[2][1] === false ||
+                        board[1][0] === 'x' && board[1][2] === false ||
+                        board[1][2] === 'x' && board[1][0] === false ||
+                        board[2][1] === 'x' && board[0][1] === false ) {
+                          if (board[0][1] === 'x') {
+                            $('#h').css('cursor', 'default');
+                            $('#h').html('<p>X</p>');
+                            board[2][1] = 'x';
+                          } else if (board[1][0] === 'x') {
+                            $('#f').css('cursor', 'default');
+                            $('#f').html('<p>X</p>');
+                            board[1][2] = 'x';
+                          } else if (board[1][2] === 'x') {
+                            $('#d').css('cursor', 'default');
+                            $('#d').html('<p>X</p>');
+                            board[1][0] = 'x';
+                          } else if (board[2][1] === 'x') {
+                            $('#b').css('cursor', 'default');
+                            $('#b').html('<p>X</p>');
+                            board[0][1] = 'x';
+                          };
+             };
+
+        //Go anywhere its going to be a Draw
+          if (board[0][1] === false) {
+            $('#b').css('cursor', 'default');
+            $('#b').html('<p>X</p>');
+            board[0][1] = 'x';
+          } else if (board[1][0] === false) {
+            $('#d').css('cursor', 'default');
+            $('#d').html('<p>X</p>');
+            board[1][0] = 'x';
+          } else if (board[1][2] === false) {
+            $('#f').css('cursor', 'default');
+            $('#f').html('<p>X</p>');
+            board[1][2] = 'x';
+          } else if (board[2][1] === false) {
+            $('#h').css('cursor', 'default');
+            $('#h').html('<p>X</p>');
+            board[2][1] = 'x';
+          } else if (board[0][0] === false) {
+            $('#a').css('cursor', 'default');
+            $('#a').html('<p>X</p>');
+            board[0][0] = 'x';
+          } else if (board[0][2] === false) {
+            $('#c').css('cursor', 'default');
+            $('#c').html('<p>X</p>');
+            board[0][2] = 'x';
+          } else if (board[2][0] === false) {
+            $('#g').css('cursor', 'default');
+            $('#g').html('<p>X</p>');
+            board[2][0] = 'x';
+          } else if (board[2][2] === false) {
+            $('#i').css('cursor', 'default');
+            $('#i').html('<p>X</p>');
+            board[2][2] = 'x';
+          };
 
         };
 
-      };
+      //Turn four for Computer
+      if (turn === 4) {
+        if (board[0][1] === false) {
+          $('#b').css('cursor', 'default');
+          $('#b').html('<p>X</p>');
+          victory = 'yes';
+          board[0][1] = 'x';
+        } else if (board[1][0] === false) {
+          $('#d').css('cursor', 'default');
+          $('#d').html('<p>X</p>');
+          victory = 'yes';
+          board[1][0] = 'x';
+        } else if (board[1][2] === false) {
+          $('#f').css('cursor', 'default');
+          $('#f').html('<p>X</p>');
+          victory = 'yes';
+          board[1][2] = 'x';
+        } else if (board[2][1] === false) {
+          $('#h').css('cursor', 'default');
+          $('#h').html('<p>X</p>');
+          victory = 'yes';
+          board[2][1] = 'x';
+        } else if (board[0][0] === false) {
+          $('#a').css('cursor', 'default');
+          $('#a').html('<p>X</p>');
+          board[0][0] = 'x';
+        } else if (board[0][2] === false) {
+          $('#c').css('cursor', 'default');
+          $('#c').html('<p>X</p>');
+          board[0][2] = 'x';
+        } else if (board[2][0] === false) {
+          $('#g').css('cursor', 'default');
+          $('#g').html('<p>X</p>');
+          board[2][0] = 'x';
+        } else if (board[2][2] === false) {
+          $('#i').css('cursor', 'default');
+          $('#i').html('<p>X</p>');
+          board[2][2] = 'x';
+        };
+      }
 
       //Checking for Victory for X
       if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'x' ||
@@ -775,7 +859,7 @@ $(document).on('ready', function () {
       };
 
       //Checking for Draw
-      if (turn === 9 && victory === 'no') {
+      if (turn === 4 && victory === 'no') {
         $('.win').text('Its a Draw!');
         $('.win').css('display', 'block');
         $('.status').css('display', 'none');
