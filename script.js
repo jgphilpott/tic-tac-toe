@@ -3,6 +3,7 @@ $(document).on('ready', function () {
   var turn = 0;
   var gameType = 'none';
   var victory = 'no';
+  var last = false;
 
   var board = [
     [false, false, false],
@@ -463,6 +464,101 @@ $(document).on('ready', function () {
           };
         };
 
+        //Checking if O has two corners
+        if (board[0][0] === 'o' && board[0][2] === 'o' ||
+            board[0][0] === 'o' && board[2][0] === 'o' ||
+            board[0][2] === 'o' && board[2][2] === 'o' ||
+            board[2][0] === 'o' && board[2][2] === 'o') {
+              if (board[0][0] === 'o' && board[0][2] === 'o') {
+                $('#b').css('cursor', 'default');
+                $('#b').html('<p>X</p>');
+                board[0][1] = 'x';
+              };
+              if (board[0][0] === 'o' && board[2][0] === 'o') {
+                $('#d').css('cursor', 'default');
+                $('#d').html('<p>X</p>');
+                board[1][0] = 'x';
+              };
+              if (board[0][2] === 'o' && board[2][2] === 'o') {
+                $('#f').css('cursor', 'default');
+                $('#f').html('<p>X</p>');
+                board[1][2] = 'x';
+              };
+              if (board[2][0] === 'o' && board[2][2] === 'o') {
+                $('#h').css('cursor', 'default');
+                $('#h').html('<p>X</p>');
+                board[2][1] = 'x';
+              };
+        };
+
+        //Checking if O has two in a row
+        if (board[0][0] === 'o' && board[0][1] === 'o' || board[0][0] === 'o' && board[1][0] === 'o' ||
+            board[0][2] === 'o' && board[0][1] === 'o' || board[0][2] === 'o' && board[1][2] === 'o' ||
+            board[2][0] === 'o' && board[1][0] === 'o' || board[2][0] === 'o' && board[2][1] === 'o' ||
+            board[2][2] === 'o' && board[2][1] === 'o' || board[2][2] === 'o' && board[1][2] === 'o') {
+              if (board[0][0] === 'o' && board[0][1] === 'o') {
+                $('#c').css('cursor', 'default');
+                $('#c').html('<p>X</p>');
+                board[0][2] = 'x';
+              };
+              if (board[0][0] === 'o' && board[1][0] === 'o') {
+                $('#g').css('cursor', 'default');
+                $('#g').html('<p>X</p>');
+                board[2][0] = 'x';
+              };
+              if (board[0][2] === 'o' && board[0][1] === 'o') {
+                $('#a').css('cursor', 'default');
+                $('#a').html('<p>X</p>');
+                board[0][0] = 'x';
+              };
+              if (board[0][2] === 'o' && board[1][2] === 'o') {
+                $('#i').css('cursor', 'default');
+                $('#i').html('<p>X</p>');
+                board[2][2] = 'x';
+              };
+              if (board[2][0] === 'o' && board[1][0] === 'o') {
+                $('#a').css('cursor', 'default');
+                $('#a').html('<p>X</p>');
+                board[0][0] = 'x';
+              };
+              if (board[2][0] === 'o' && board[2][1] === 'o') {
+                $('#i').css('cursor', 'default');
+                $('#i').html('<p>X</p>');
+                board[2][2] = 'x';
+              };
+              if (board[2][2] === 'o' && board[2][1] === 'o') {
+                $('#g').css('cursor', 'default');
+                $('#g').html('<p>X</p>');
+                board[2][0] = 'x';
+              };
+              if (board[2][2] === 'o' && board[1][2] === 'o') {
+                $('#c').css('cursor', 'default');
+                $('#c').html('<p>X</p>');
+                board[0][2] = 'x';
+              };
+        };
+
+        //Taking any avalible corner
+
+        if (board[0][0] === false || board[0][2] === false || board[2][0] === false ||) {
+          if (board[0][0] === false) {
+            $('#a').css('cursor', 'default');
+            $('#a').html('<p>X</p>');
+            board[0][0] = 'x';
+          } else if (board[0][2] === false) {
+            $('#c').css('cursor', 'default');
+            $('#c').html('<p>X</p>');
+            board[0][2] = 'x';
+          } else if (board[2][0] === false) {
+            $('#g').css('cursor', 'default');
+            $('#g').html('<p>X</p>');
+            board[2][0] = 'x';
+          } else if (board[2][2] === false) {
+            $('#i').css('cursor', 'default');
+            $('#i').html('<p>X</p>');
+            board[2][2] = 'x';
+          };
+        };
       };
 
       //Checking for Victory for X
@@ -580,7 +676,7 @@ $(document).on('ready', function () {
       };
 
       //Checking for Draw
-      if (turn === 9 && victory === 'no') {
+      if (turn === 5 && victory === 'no') {
         $('.win').text('Its a Draw!');
         $('.win').css('display', 'block');
         $('.status').css('display', 'none');
