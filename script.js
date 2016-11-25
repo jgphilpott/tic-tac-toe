@@ -8,6 +8,36 @@ $(document).on('ready', function () {
     [false, false, false],
   ];
 
+  //Menu Option 1
+  $('#op1').on('click', function() {
+    $('#welcome').css('display', 'none');
+    $('table').css('display', 'table');
+    $('.status').css('display', 'block');
+  });
+
+  //Menu Option 2
+  $('#op2').on('click', function() {
+    $('#op1').css('display', 'none');
+    $('#op2').css('display', 'none');
+    $('#op3').css('display', 'block');
+    $('#op4').css('display', 'block');
+  });
+
+  //Menu Option 3
+  $('#op3').on('click', function() {
+    $('#welcome').css('display', 'none');
+    $('table').css('display', 'table');
+    $('.status').css('display', 'block');
+  });
+
+  //Menu Option 4
+  $('#op4').on('click', function() {
+    $('#welcome').css('display', 'none');
+    $('table').css('display', 'table');
+    $('.status').css('display', 'block');
+  });
+
+  //Click event for one X/O game turn
   $('.tile').on('click', function(event) {
 
     // Updateing Board

@@ -5,6 +5,7 @@ body {
 table {
   margin: auto;
   position: relative;
+  display: none;
   top: 20px;
   border-collapse: collapse;
 }
@@ -17,6 +18,7 @@ p {
 }
 
 h1.status {
+  display: none;
   padding: 10px;
   text-align: center;
   font-size: 60px;
@@ -29,6 +31,65 @@ h1.win {
   text-align: center;
   font-size: 60px;
   color: red;
+}
+
+#welcome {
+  margin: auto;
+  position: relative;
+  top: 30px;
+  border: 7px solid white;
+  border-radius: 50%;
+  width: 750px;
+  height: 555px;
+}
+
+#welcome h1 {
+  text-align: center;
+  font-size: 70px;
+  position: relative;
+  top: 5%;
+  color: white;
+}
+
+#welcome h2 {
+  text-align: center;
+  font-size: 27px;
+}
+
+#op1,
+#op2,
+#op3,
+#op4 {
+  margin: auto;
+  position: relative;
+  background-color: white;
+  border: 3px solid white;
+  border-top-left-radius: 50px;
+  width: 400px;
+  height: 70px;
+}
+
+#op1:hover,
+#op2:hover,
+#op3:hover,
+#op4:hover {
+  border-bottom-left-radius: 50px;
+  background-color: lightgrey;
+}
+
+#op3,
+#op4 {
+  display: none;
+}
+
+#op1,
+#op3 {
+  top: 5%;
+}
+
+#op2,
+#op4 {
+  top: 15%;
 }
 
 .tile {
