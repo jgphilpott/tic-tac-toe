@@ -557,19 +557,19 @@ $(document).on('ready', function () {
       //Taking any avalible corner
       if (last != '2') {
         if (board[0][0] === false || board[0][2] === false || board[2][0] === false || board[2][2] === false) {
-          if (board[0][0] === false) {
+          if (board[0][0] === false && board[0][1] === false && board[1][0] === false) {
             $('#a').css('cursor', 'default');
             $('#a').html('<p>X</p>');
             board[0][0] = 'x';
-          } else if (board[0][2] === false) {
+          } else if (board[0][2] === false  && board[0][1] === false && board[1][2] === false) {
             $('#c').css('cursor', 'default');
             $('#c').html('<p>X</p>');
             board[0][2] = 'x';
-          } else if (board[2][0] === false) {
+          } else if (board[2][0] === false  && board[1][0] === false && board[2][1] === false) {
             $('#g').css('cursor', 'default');
             $('#g').html('<p>X</p>');
             board[2][0] = 'x';
-          } else if (board[2][2] === false) {
+          } else if (board[2][2] === false  && board[2][1] === false && board[1][2] === false) {
             $('#i').css('cursor', 'default');
             $('#i').html('<p>X</p>');
             board[2][2] = 'x';
