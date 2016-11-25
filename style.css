@@ -1,0 +1,78 @@
+body {
+  background-color: black;
+}
+
+table {
+  margin: auto;
+  position: relative;
+  top: 20px;
+  border-collapse: collapse;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+  color: white;
+  font-size: 100px;
+}
+
+h1.status {
+  padding: 10px;
+  text-align: center;
+  font-size: 60px;
+  color: white;
+}
+
+h1.win {
+  display: none;
+  padding: 10px;
+  text-align: center;
+  font-size: 60px;
+  color: red;
+}
+
+.tile {
+  font-family: Baskerville, serif;
+  text-align: center;
+  border: 10px solid white;
+  background-color: black;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+
+#a {
+  border-top: 10px solid black;
+  border-left: 10px solid black;
+}
+
+#b {
+  border-top: 10px solid black;
+}
+
+#c {
+  border-top: 10px solid black;
+  border-right: 10px solid black;
+}
+
+#d {
+  border-left: 10px solid black;
+}
+
+#f {
+  border-right: 10px solid black;
+}
+
+#g {
+  border-bottom: 10px solid black;
+  border-left: 10px solid black;
+}
+
+#h {
+  border-bottom: 10px solid black;
+}
+
+#i {
+  border-bottom: 10px solid black;
+  border-right: 10px solid black;
+}
