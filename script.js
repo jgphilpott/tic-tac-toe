@@ -160,7 +160,7 @@ $(document).on('ready', function () {
           board[0][0] === 'x' && board[1][1] === 'x' && board[2][2] === 'x' || //Looking for backward diagonal
           board[0][2] === 'x' && board[1][1] === 'x' && board[2][0] === 'x') { //Looking for forward diagonal
 
-            //This code only runs if the one of the above conditions evaluates to true
+            //This code only runs if one of the above conditions evaluates to true
 
             if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'x') {
 
@@ -331,8 +331,8 @@ $(document).on('ready', function () {
           };
 
           //Changing cursor and incrementing turn
-          turn++
           $('#a').css('cursor', 'default');
+          turn++
 
           break;
 
@@ -410,7 +410,7 @@ $(document).on('ready', function () {
         //If Human placed on an edge tile
         if (board[0][1] === 'o' || board[1][0] === 'o' || board[1][2] === 'o' || board[2][1] === 'o') {
 
-          //This code only runs if the one of the above conditions evaluates to true
+          //This code only runs if one of the above conditions evaluates to true
           if (board[0][1] === 'o') {
 
             //Respond by taking an opposite corner tile
@@ -440,7 +440,7 @@ $(document).on('ready', function () {
         //If Human placed in the corner
         if (board[0][0] === 'o' || board[0][2] === 'o' || board[2][0] === 'o' || board[2][2] === 'o') {
 
-          //This code only runs if the one of the above conditions evaluates to true
+          //This code only runs if one of the above conditions evaluates to true
           if (board[0][0] === 'o') {
 
             //Respond by taking the opposite corner tile
@@ -471,64 +471,81 @@ $(document).on('ready', function () {
       //Turn two for Computer
       if (turn === 2) {
 
-        //Checking for win
+        //Checking for win possibility
+        //Because X is always in the center and turn one always takes a corner tile, only the corners must be checked
         if (board[0][0] === 'empty' || board[0][2] === 'empty' || board[2][0] === 'empty' || board[2][2] === 'empty') {
+
+          //This code only runs if one of the above conditions evaluates to true
           if (board[0][0] === 'x' && board[2][2] === 'empty') {
+
+            //Respond by taking the appropriate corner to trigger a victory
+
+            //Updating CSS and HTML
             $('#i').css('cursor', 'default');
             $('#i').html('<p>X</p>');
+
+            //Updating array
             board[2][2] = 'x';
+
+            //Updating move status
             lastmove = '2';
-          };
-          if (board[0][2] === 'x' && board[2][0] === 'empty') {
+
+          } else if (board[0][2] === 'x' && board[2][0] === 'empty') {
             $('#g').css('cursor', 'default');
             $('#g').html('<p>X</p>');
             board[2][0] = 'x';
             lastmove = '2';
-          };
-          if (board[2][0] === 'x' && board[0][2] === 'empty') {
+          } else if (board[2][0] === 'x' && board[0][2] === 'empty') {
             $('#c').css('cursor', 'default');
             $('#c').html('<p>X</p>');
             board[0][2] = 'x';
             lastmove = '2';
-          };
-          if (board[2][2] === 'x' && board[0][0] === 'empty') {
+          } else if (board[2][2] === 'x' && board[0][0] === 'empty') {
             $('#a').css('cursor', 'default');
             $('#a').html('<p>X</p>');
             board[0][0] = 'x';
             lastmove = '2';
-          };
-        };
+          }; //End of inner block
+        }; //End of win possibility :(
 
-        //Checking if O has two corners
-           if (board[0][0] === 'o' && board[0][2] === 'o' ||
-               board[0][0] === 'o' && board[2][0] === 'o' ||
-               board[0][2] === 'o' && board[2][2] === 'o' ||
-               board[2][0] === 'o' && board[2][2] === 'o') {
-                 if (board[0][0] === 'o' && board[0][2] === 'o') {
-                   $('#b').css('cursor', 'default');
-                   $('#b').html('<p>X</p>');
-                   board[0][1] = 'x';
-                   lastmove = '2';
-                 };
-                 if (board[0][0] === 'o' && board[2][0] === 'o') {
-                   $('#d').css('cursor', 'default');
-                   $('#d').html('<p>X</p>');
-                   board[1][0] = 'x';
-                   lastmove = '2';
-                 };
-                 if (board[0][2] === 'o' && board[2][2] === 'o') {
-                   $('#f').css('cursor', 'default');
-                   $('#f').html('<p>X</p>');
-                   board[1][2] = 'x';
-                   lastmove = '2';
-                 };
-                 if (board[2][0] === 'o' && board[2][2] === 'o') {
-                   $('#h').css('cursor', 'default');
-                   $('#h').html('<p>X</p>');
-                   board[2][1] = 'x';
-                   lastmove = '2';
-                 };
-           };
+        //Checking if O has two corners in which case the center edge tile must be blocked
+        if (board[0][0] === 'o' && board[0][2] === 'o' ||
+            board[0][0] === 'o' && board[2][0] === 'o' ||
+            board[0][2] === 'o' && board[2][2] === 'o' ||
+            board[2][0] === 'o' && board[2][2] === 'o') {
+
+              //This code only runs if one of the above conditions evaluates to true
+              if (board[0][0] === 'o' && board[0][2] === 'o') {
+
+                //Respond by taking the appropriate center edge tile
+
+                //Updating CSS and HTML
+                $('#b').css('cursor', 'default');
+                $('#b').html('<p>X</p>');
+
+                //Updating array
+                board[0][1] = 'x';
+
+                //Updating move status
+                lastmove = '2';
+
+              } else if (board[0][0] === 'o' && board[2][0] === 'o') {
+                 $('#d').css('cursor', 'default');
+                 $('#d').html('<p>X</p>');
+                 board[1][0] = 'x';
+                 lastmove = '2';
+               } else if (board[0][2] === 'o' && board[2][2] === 'o') {
+                 $('#f').css('cursor', 'default');
+                 $('#f').html('<p>X</p>');
+                 board[1][2] = 'x';
+                 lastmove = '2';
+               } else if (board[2][0] === 'o' && board[2][2] === 'o') {
+                 $('#h').css('cursor', 'default');
+                 $('#h').html('<p>X</p>');
+                 board[2][1] = 'x';
+                 lastmove = '2';
+               }; //End of inner block
+         }; //End of two corner check
 
          //Checking if O has two in a row
             if (board[0][0] === 'o' && board[0][1] === 'o' || board[0][0] === 'o' && board[1][0] === 'o' ||
@@ -585,13 +602,21 @@ $(document).on('ready', function () {
                   };
             };
 
-      //Taking any avalible corner
-      if (lastmove != '2') {
-        if (board[0][0] === 'empty' || board[0][2] === 'empty' || board[2][0] === 'empty' || board[2][2] === 'empty') {
+        //Taking an avalible corner
+        if (lastmove != '2') { //Stops double play if one of the above blocks already executed a move
+
+          //The following statements check for an available corner with two empty adjacent edge tiles
           if (board[0][0] === 'empty' && board[0][1] === 'empty' && board[1][0] === 'empty') {
+
+            //Respond by taking the empty corner tile
+
+            //Updateing CSS and HTML
             $('#a').css('cursor', 'default');
             $('#a').html('<p>X</p>');
+
+            //Updateing array
             board[0][0] = 'x';
+
           } else if (board[0][2] === 'empty'  && board[0][1] === 'empty' && board[1][2] === 'empty') {
             $('#c').css('cursor', 'default');
             $('#c').html('<p>X</p>');
@@ -604,10 +629,9 @@ $(document).on('ready', function () {
             $('#i').css('cursor', 'default');
             $('#i').html('<p>X</p>');
             board[2][2] = 'x';
-          };
-        };
-      };
-      };
+          }; //End of inner block
+        }; //End of taking an avalible corner
+      }; //End of turn two
 
       //Turn three for Computer
       if (turn === 3) {
