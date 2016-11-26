@@ -290,10 +290,10 @@ $(document).on('ready', function () {
 
   //Menu Option 2
   $('#op2').on('click', function() {
-    $('#op1').css('display', 'none');
-    $('#op2').css('display', 'none');
-    $('#op3').css('display', 'block');
-    $('#op4').css('display', 'block');
+    $('#op1').css('display', 'none'); //Turning first menu off
+    $('#op2').css('display', 'none'); //
+    $('#op3').css('display', 'block'); //Turning second menu on
+    $('#op4').css('display', 'block'); //
   });
 
   //Menu Option 3
