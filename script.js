@@ -12,7 +12,8 @@ $(document).on('ready', function () {
 
   //Menu Option 1
   $('#op1').on('click', function() {
-    gameType = 'HvH';
+
+    //Changing CSS from menu to game
     $('#welcome').css('display', 'none');
     $('table').css('display', 'table');
     $('.status').css('display', 'block');
@@ -20,21 +21,27 @@ $(document).on('ready', function () {
     //Click event for one X/O game turn
     $('.tile').on('click', function(event) {
 
-      // Updateing Board
+      //Updating board array, table css and incrementing turn variable by +1
       switch (event.target.id) {
+
         case 'a':
-          if (board[0][0] === 'empty') {
-            if (turn % 2 === 0) {
-              $(this).html('<p>X</p>');
-              board[0][0] = 'x';
+
+          if (board[0][0] === 'empty') { //ensuring tile isn't already occupied
+            if (turn % 2 === 0) { //Checking whose turn it is
+              $(this).html('<p>X</p>'); //Updating HTML
+              board[0][0] = 'x'; //Updating array
             } else {
               $(this).html('<p>O</p>');
               board[0][0] = 'o';
             };
+
+            //Changing cursor and incrementing turn
             $('#a').css('cursor', 'default');
             turn++
+
           }
           break;
+
         case 'b':
           if (board[0][1] === 'empty') {
             if (turn % 2 === 0) {
@@ -141,7 +148,7 @@ $(document).on('ready', function () {
           break;
         default:
           console.log('Error');
-      }
+      };
 
       //Checking for Victory for X
       if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'x' ||
@@ -287,7 +294,6 @@ $(document).on('ready', function () {
 
   //Menu Option 3
   // $('#op3').on('click', function() {
-  //   gameType = 'HvC';
   //   $('#welcome').css('display', 'none');
   //   $('table').css('display', 'table');
   //   $('.status').css('display', 'block');
@@ -295,7 +301,6 @@ $(document).on('ready', function () {
 
   //Menu Option 4
   $('#op4').on('click', function() {
-    gameType = 'CvH';
     $('#welcome').css('display', 'none');
     $('table').css('display', 'table');
     $('.status').css('display', 'block');
