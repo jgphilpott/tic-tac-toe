@@ -26,7 +26,7 @@ $(document).on('ready', function () {
 
         case 'a':
 
-          if (board[0][0] === 'empty') { //ensuring tile isn't already occupied
+          if (board[0][0] === 'empty') { //Ensuring tile isn't already occupied
             if (turn % 2 === 0) { //Checking whose turn it is
               $(this).html('<p>X</p>'); //Updating HTML
               board[0][0] = 'x'; //Updating array
@@ -305,24 +305,37 @@ $(document).on('ready', function () {
 
   //Menu Option 4
   $('#op4').on('click', function() {
+
+    //Changing CSS from menu to game
     $('#welcome').css('display', 'none');
     $('table').css('display', 'table');
     $('.status').css('display', 'block');
     $('.status').text('Humans Turn');
+
+    //Always starting in the center
     $('#e').css('cursor', 'default');
     $('#e').html('<p>X</p>');
     board[1][1] = 'x';
 
+    //Click event for one X/O game turn
     $('.tile').on('click', function(event) {
+
+      //Updating board array, table css and incrementing turn variable by +1
       switch (event.target.id) {
+
         case 'a':
-          if (board[0][0] === 'empty') {
-            $(this).html('<p>O</p>');
-            board[0][0] = 'o';
+
+          if (board[0][0] === 'empty') { //Ensuring tile isn't already occupied
+            $(this).html('<p>O</p>'); //Updating HTML
+            board[0][0] = 'o'; //Updating Array
           };
+
+          //Changing cursor and incrementing turn
           turn++
           $('#a').css('cursor', 'default');
+
           break;
+
         case 'b':
           if (board[0][1] === 'empty') {
             $(this).html('<p>O</p>');
@@ -391,59 +404,69 @@ $(document).on('ready', function () {
           console.log('Error');
       };
 
-
       //Turn one for Computer
       if (turn === 1) {
 
-        //If Human placed on the edge
+        //If Human placed on an edge tile
         if (board[0][1] === 'o' || board[1][0] === 'o' || board[1][2] === 'o' || board[2][1] === 'o') {
+
+          //This code only runs if the one of the above conditions evaluates to true
           if (board[0][1] === 'o') {
+
+            //Respond by taking an opposite corner tile
+
+            //Updating CSS and HTML
             $('#i').css('cursor', 'default');
             $('#i').html('<p>X</p>');
+
+            //Updating array
             board[2][2] = 'x';
-          };
-          if (board[1][0] === 'o') {
+
+          } else if (board[1][0] === 'o') {
             $('#c').css('cursor', 'default');
             $('#c').html('<p>X</p>');
             board[0][2] = 'x';
-          };
-          if (board[1][2] === 'o') {
+          } else if (board[1][2] === 'o') {
             $('#g').css('cursor', 'default');
             $('#g').html('<p>X</p>');
             board[2][0] = 'x';
-          };
-          if (board[2][1] === 'o') {
+          } else if (board[2][1] === 'o') {
             $('#a').css('cursor', 'default');
             $('#a').html('<p>X</p>');
             board[0][0] = 'x';
-          };
-        };
+          }; //End of inner block
+        }; //End off edge tile was taken
 
         //If Human placed in the corner
         if (board[0][0] === 'o' || board[0][2] === 'o' || board[2][0] === 'o' || board[2][2] === 'o') {
+
+          //This code only runs if the one of the above conditions evaluates to true
           if (board[0][0] === 'o') {
+
+            //Respond by taking the opposite corner tile
+
+            //Updating CSS and HTML
             $('#i').css('cursor', 'default');
             $('#i').html('<p>X</p>');
+
+            //Updating array
             board[2][2] = 'x';
-          };
-          if (board[0][2] === 'o') {
+
+          } else if (board[0][2] === 'o') {
             $('#g').css('cursor', 'default');
             $('#g').html('<p>X</p>');
             board[2][0] = 'x';
-          };
-          if (board[2][0] === 'o') {
+          } else if (board[2][0] === 'o') {
             $('#c').css('cursor', 'default');
             $('#c').html('<p>X</p>');
             board[0][2] = 'x';
-          };
-          if (board[2][2] === 'o') {
+          } else if (board[2][2] === 'o') {
             $('#a').css('cursor', 'default');
             $('#a').html('<p>X</p>');
             board[0][0] = 'x';
-          };
-        };
-
-      };
+          }; //End of inner block
+        }; //End of corner tile was taken
+      }; //End of turn one
 
       //Turn two for Computer
       if (turn === 2) {
