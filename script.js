@@ -634,7 +634,7 @@ $(document).on('ready', function () {
                      } else if (board[2][0] === false) {
                        $('#g').css('cursor', 'default');
                        $('#g').html('<p>X</p>');
-                       board[2][2] = 'x';
+                       board[2][0] = 'x';
                        last = '3';
                      };
                    } else if (board[2][0] === 'x' && board[2][2] === 'x') {
