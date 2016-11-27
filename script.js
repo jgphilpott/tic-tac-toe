@@ -276,7 +276,7 @@ $(document).on('ready', function () { //Only loads JavaScript once DOM is ready
 
         //Turning off click listener off for all elements of tile class
         $('.tile').off('click');
-      }
+      };
 
       // Change the status text
       if (turn % 2 === 0) {
@@ -305,6 +305,251 @@ $(document).on('ready', function () { //Only loads JavaScript once DOM is ready
     $('.status').css('display', 'block');
     $('.status').text('Humans Turn');
 
+    $('.tile').on('click', function() {
+
+      //Updating board array, table css and incrementing turn variable by +1
+      switch (event.target.id) {
+
+        case 'a':
+
+          if (board[0][0] === 'empty') { //Ensuring tile isn't already occupied
+            $(this).html('<p>X</p>'); //Updating HTML
+            board[0][0] = 'x'; //Updating Array
+          };
+
+          //Changing cursor and incrementing turn
+          $('#a').css('cursor', 'default');
+          turn++
+
+          break;
+
+        case 'b':
+          if (board[0][1] === 'empty') {
+            $(this).html('<p>X</p>');
+            board[0][1] = 'x';
+          };
+          $('#b').css('cursor', 'default');
+          turn++
+          break;
+        case 'c':
+          if (board[0][2] === 'empty') {
+            $(this).html('<p>X</p>');
+            board[0][2] = 'x';
+          };
+          $('#c').css('cursor', 'default');
+          turn++
+          break;
+        case 'd':
+          if (board[1][0] === 'empty') {
+            $(this).html('<p>X</p>');
+            board[1][0] = 'x';
+          };
+          $('#d').css('cursor', 'default');
+          turn++
+          break;
+        case 'e':
+          if (board[1][1] === 'empty') {
+            $(this).html('<p>X</p>');
+            board[1][1] = 'x';
+          };
+          $('#e').css('cursor', 'default');
+          turn++
+          break;
+        case 'f':
+          if (board[1][2] === 'empty') {
+            $(this).html('<p>X</p>');
+            board[1][2] = 'x';
+          };
+          $('#f').css('cursor', 'default');
+          turn++
+          break;
+        case 'g':
+          if (board[2][0] === 'empty') {
+            $(this).html('<p>X</p>');
+            board[2][0] = 'x';
+          };
+          $('#g').css('cursor', 'default');
+          turn++
+          break;
+        case 'h':
+          if (board[2][1] === 'empty') {
+            $(this).html('<p>X</p>');
+            board[2][1] = 'x';
+          };
+          $('#h').css('cursor', 'default');
+          turn++
+          break;
+        case 'i':
+          if (board[2][2] === 'empty') {
+            $(this).html('<p>X</p>');
+            board[2][2] = 'x';
+          };
+          $('#i').css('cursor', 'default');
+          turn++
+          break;
+        default:
+          console.log('Error');
+      };
+
+      //Turn one for Computer
+      if (turn === 1) {
+
+        if (board[1][1] === 'x') { //Checking if human took center tile
+
+          //Updating CSS and HTML
+          $('#c').css('cursor', 'default');
+          $('#c').html('<p>O</p>');
+
+          //Updateing Array
+          board[0][2] = 'o';
+
+        } else { //Take the center tile if the human didnt
+          $('#e').css('cursor', 'default');
+          $('#e').html('<p>O</p>');
+          board[1][1] = 'o';
+        }; //End of inner Block
+      }; //End of turn one
+
+      //Checking victory for X
+      if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'x' || //Looking for horizontal victory row 0
+          board[1][0] === 'x' && board[1][1] === 'x' && board[1][2] === 'x' || //Looking for horizontal victory row 1
+          board[2][0] === 'x' && board[2][1] === 'x' && board[2][2] === 'x' || //Looking for horizontal victory row 2
+          board[0][0] === 'x' && board[1][0] === 'x' && board[2][0] === 'x' || //Looking for vertical victory column 0
+          board[0][1] === 'x' && board[1][1] === 'x' && board[2][1] === 'x' || //Looking for vertical victory column 1
+          board[0][2] === 'x' && board[1][2] === 'x' && board[2][2] === 'x' || //Looking for vertical victory column 2
+          board[0][0] === 'x' && board[1][1] === 'x' && board[2][2] === 'x' || //Looking for backward diagonal
+          board[0][2] === 'x' && board[1][1] === 'x' && board[2][0] === 'x') { //Looking for forward diagonal
+
+            //This code only runs if one of the above conditions evaluates to true
+
+            if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'x') {
+
+              //The following statements execute an appropriate response for this case
+
+              $('#a p').css('color', 'red');
+              $('#b p').css('color', 'red');
+              $('#c p').css('color', 'red');
+
+            } else if (board[1][0] === 'x' && board[1][1] === 'x' && board[1][2] === 'x') {
+              $('#d p').css('color', 'red');
+              $('#e p').css('color', 'red');
+              $('#f p').css('color', 'red');
+            } else if (board[2][0] === 'x' && board[2][1] === 'x' && board[2][2] === 'x') {
+              $('#g p').css('color', 'red');
+              $('#h p').css('color', 'red');
+              $('#i p').css('color', 'red');
+            } else if (board[0][0] === 'x' && board[1][0] === 'x' && board[2][0] === 'x') {
+              $('#a p').css('color', 'red');
+              $('#d p').css('color', 'red');
+              $('#g p').css('color', 'red');
+            } else if (board[0][1] === 'x' && board[1][1] === 'x' && board[2][1] === 'x') {
+              $('#b p').css('color', 'red');
+              $('#e p').css('color', 'red');
+              $('#h p').css('color', 'red');
+            } else if (board[0][2] === 'x' && board[1][2] === 'x' && board[2][2] === 'x') {
+              $('#c p').css('color', 'red');
+              $('#f p').css('color', 'red');
+              $('#i p').css('color', 'red');
+            } else if (board[0][0] === 'x' && board[1][1] === 'x' && board[2][2] === 'x') {
+              $('#a p').css('color', 'red');
+              $('#e p').css('color', 'red');
+              $('#i p').css('color', 'red');
+            } else if (board[0][2] === 'x' && board[1][1] === 'x' && board[2][0] === 'x') {
+              $('#c p').css('color', 'red');
+              $('#e p').css('color', 'red');
+              $('#g p').css('color', 'red');
+            };
+
+        victory = true;//Triggering victory
+
+        //Changing CSS
+        $('.win').text('X Wins!');
+        $('.win').css('display', 'block');
+        $('.status').css('display', 'none');
+        $('.tile').css('cursor', 'default');
+
+        //Turning off click listener off for all elements of tile class
+        $('.tile').off('click');
+
+      };
+
+      //Checking victory for O
+      if (board[0][0] === 'o' && board[0][1] === 'o' && board[0][2] === 'o' || //Looking for horizontal victory row 0
+          board[1][0] === 'o' && board[1][1] === 'o' && board[1][2] === 'o' || //Looking for horizontal victory row 1
+          board[2][0] === 'o' && board[2][1] === 'o' && board[2][2] === 'o' || //Looking for horizontal victory row 2
+          board[0][0] === 'o' && board[1][0] === 'o' && board[2][0] === 'o' || //Looking for vertical victory column 0
+          board[0][1] === 'o' && board[1][1] === 'o' && board[2][1] === 'o' || //Looking for vertical victory column 1
+          board[0][2] === 'o' && board[1][2] === 'o' && board[2][2] === 'o' || //Looking for vertical victory column 2
+          board[0][0] === 'o' && board[1][1] === 'o' && board[2][2] === 'o' || //Looking for backward diagonal
+          board[0][2] === 'o' && board[1][1] === 'o' && board[2][0] === 'o') { //Looking for forward diagonal
+
+            //This code only runs if one of the above conditions evaluates to true
+
+            if (board[0][0] === 'o' && board[0][1] === 'o' && board[0][2] === 'o') {
+
+              //The following statements execute an appropriate response for this case
+
+              $('#a p').css('color', 'red');
+              $('#b p').css('color', 'red');
+              $('#c p').css('color', 'red');
+
+            } else if (board[1][0] === 'o' && board[1][1] === 'o' && board[1][2] === 'o') {
+              $('#d p').css('color', 'red');
+              $('#e p').css('color', 'red');
+              $('#f p').css('color', 'red');
+            } else if (board[2][0] === 'o' && board[2][1] === 'o' && board[2][2] === 'o') {
+              $('#g p').css('color', 'red');
+              $('#h p').css('color', 'red');
+              $('#i p').css('color', 'red');
+            } else if (board[0][0] === 'o' && board[1][0] === 'o' && board[2][0] === 'o') {
+              $('#a p').css('color', 'red');
+              $('#d p').css('color', 'red');
+              $('#g p').css('color', 'red');
+            } else if (board[0][1] === 'o' && board[1][1] === 'o' && board[2][1] === 'o') {
+              $('#b p').css('color', 'red');
+              $('#e p').css('color', 'red');
+              $('#h p').css('color', 'red');
+            } else if (board[0][2] === 'o' && board[1][2] === 'o' && board[2][2] === 'o') {
+              $('#c p').css('color', 'red');
+              $('#f p').css('color', 'red');
+              $('#i p').css('color', 'red');
+            } else if (board[0][0] === 'o' && board[1][1] === 'o' && board[2][2] === 'o') {
+              $('#a p').css('color', 'red');
+              $('#e p').css('color', 'red');
+              $('#i p').css('color', 'red');
+            } else if (board[0][2] === 'o' && board[1][1] === 'o' && board[2][0] === 'o') {
+              $('#c p').css('color', 'red');
+              $('#e p').css('color', 'red');
+              $('#g p').css('color', 'red');
+            };
+
+        victory = true;//Triggering victory
+
+        //Changing CSS
+        $('.win').text('Computer Wins!');
+        $('.win').css('display', 'block');
+        $('.status').css('display', 'none');
+        $('.tile').css('cursor', 'default');
+
+        //Turning off click listener off for all elements of tile class
+        $('.tile').off('click');
+
+      };
+
+      //Checking for Draw
+      //This code only runs if the turn counter reaches 9 and no victory has been triggered
+      if (turn === 9 && victory === false) {
+
+        //Updating CSS
+        $('.win').text('It\'s a Draw!');
+        $('.win').css('display', 'block');
+        $('.status').css('display', 'none');
+        $('.tile').css('cursor', 'default');
+
+        //Turning off click listener off for all elements of tile class
+        $('.tile').off('click');
+      };
+    });
   });
 
   //Menu Option 4
