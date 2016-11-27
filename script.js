@@ -132,7 +132,7 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
 
   };//End of updateAndDraw function
 
-  var checkVictory = function(player) {
+  var checkVictory = function(player, AI) {
 
     if (player === 'X') {//Checking victory for X
       if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'x' || //Looking for horizontal victory row 0
@@ -170,7 +170,11 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
             victory = true;//Triggering victory
 
             //Changing CSS
-            $('.win').text('X Wins!');
+            if (AI === true) {
+                $('.win').text('Computer Wins!');
+            } else {
+                $('.win').text('X Wins!');
+            };
             $('.win').css('display', 'block');
             $('.status').css('display', 'none');
             $('.tile').css('cursor', 'default');
@@ -210,7 +214,11 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                 drawVictory('d2');
             };//End if inner block
         victory = true;
-        $('.win').text('O Wins!');
+        if (AI === true) {
+          $('.win').text('Computer Wins!');
+        } else {
+          $('.win').text('O Wins!');
+        };
         $('.win').css('display', 'block');
         $('.status').css('display', 'none');
         $('.tile').css('cursor', 'default');
@@ -425,7 +433,7 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
       }; //End of turn one
 
       //Turn two for Computer
-      if (turn === 2) {
+      if (turn === 3) {
 
         //First checking if the center tile is an X
         if (board[1][1] === 'x') {
@@ -438,39 +446,27 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
             //The following statements check all possible spots for the second X
             if (board[0][0] === 'x') {
 
-              //Respond by blocking the potential three in a row/diagonal
+                //Respond by blocking the potential three in a row/diagonal
 
-              updateAndDraw('#i');
+                updateAndDraw('#i');
 
             } else if (board[0][1] === 'x') {
-              $('#h').css('cursor', 'default');
-              $('#h').html('<p>O</p>');
-              board[2][1] = 'o';
+                updateAndDraw('#h');
             } else if (board[1][0] === 'x') {
-              $('#f').css('cursor', 'default');
-              $('#f').html('<p>O</p>');
-              board[1][2] = 'o';
+                updateAndDraw('#f');
             } else if (board[1][2] === 'x') {
-              $('#d').css('cursor', 'default');
-              $('#d').html('<p>O</p>');
-              board[1][0] = 'o';
+                updateAndDraw('#d');
             } else if (board[2][1] === 'x') {
-              $('#b').css('cursor', 'default');
-              $('#b').html('<p>O</p>');
-              board[0][1] = 'o';
+                updateAndDraw('#b');
             } else if (board[2][2] === 'x') {
-              $('#a').css('cursor', 'default');
-              $('#a').html('<p>O</p>');
-              board[0][0] = 'o';
+                updateAndDraw('#a');
             };//End of inner block
 
           } else {
 
             //If the human took the corner opposite the first O
             //Respond by taking the upper left corner
-            $('#a').css('cursor', 'default');
-            $('#a').html('<p>O</p>');
-            board[0][0] = 'o';
+            updateAndDraw('#a');
           };//End of corner check
 
         } else { //If the center tile isn't an X
@@ -505,119 +501,64 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                 //The following only runs if one of the above statements evaluates to true
                 //The following statements execute an appropriate response for each case
                 if (board[0][0] === 'x' && board[0][1] === 'x') {
-
-                    //Updateing CSS and HTML
-                    $('#c').css('cursor', 'default');
-                    $('#c').html('<p>O</p>');
-
-                    //Updateing array
-                    board[0][2] = 'o';
-
+                    updateAndDraw('#c');
                 } else if (board[0][0] === 'x' && board[0][2] === 'x') {
-                    $('#b').css('cursor', 'default');
-                    $('#b').html('<p>O</p>');
-                    board[0][1] = 'o';
+                    updateAndDraw('#b');
                 } else if (board[0][0] === 'x' && board[1][0] === 'x') {
-                    $('#g').css('cursor', 'default');
-                    $('#g').html('<p>O</p>');
-                    board[2][0] = 'o';
+                    updateAndDraw('#g');
                 } else if (board[0][0] === 'x' && board[2][0] === 'x') {
-                    $('#d').css('cursor', 'default');
-                    $('#d').html('<p>O</p>');
-                    board[1][0] = 'o';
+                    updateAndDraw('#d');
                 } else if (board[0][0] === 'x' && board[1][2] === 'x') {
-                    $('#c').css('cursor', 'default');
-                    $('#c').html('<p>O</p>');
-                    board[0][2] = 'o';
+                    updateAndDraw('#c');
                 } else if (board[0][0] === 'x' && board[2][1] === 'x') {
-                    $('#g').css('cursor', 'default');
-                    $('#g').html('<p>O</p>');
-                    board[2][0] = 'o';
+                    updateAndDraw('#g');
                 } else if (board[0][2] === 'x' && board[0][1] === 'x') {
-                    $('#a').css('cursor', 'default');
-                    $('#a').html('<p>O</p>');
-                    board[0][0] = 'o';
+                    updateAndDraw('#a');
                 } else if (board[0][2] === 'x' && board[1][2] === 'x') {
-                    $('#i').css('cursor', 'default');
-                    $('#i').html('<p>O</p>');
-                    board[2][2] = 'o';
+                    updateAndDraw('#i');
                 } else if (board[0][2] === 'x' && board[2][2] === 'x') {
-                    $('#f').css('cursor', 'default');
-                    $('#f').html('<p>O</p>');
-                    board[1][2] = 'o';
+                    updateAndDraw('#f');
                 } else if (board[0][2] === 'x' && board[1][0] === 'x') {
-                    $('#a').css('cursor', 'default');
-                    $('#a').html('<p>O</p>');
-                    board[0][0] = 'o';
+                    updateAndDraw('#a');
                 } else if (board[0][2] === 'x' && board[2][1] === 'x') {
-                    $('#i').css('cursor', 'default');
-                    $('#i').html('<p>O</p>');
-                    board[2][2] = 'o';
+                    updateAndDraw('#i');
                 } else if (board[2][2] === 'x' && board[1][2] === 'x') {
-                    $('#c').css('cursor', 'default');
-                    $('#c').html('<p>O</p>');
-                    board[0][2] = 'o';
+                    updateAndDraw('#c');
                 } else if (board[2][2] === 'x' && board[2][1] === 'x') {
-                    $('#g').css('cursor', 'default');
-                    $('#g').html('<p>O</p>');
-                    board[2][0] = 'o';
+                    updateAndDraw('#g');
                 } else if (board[2][2] === 'x' && board[2][0] === 'x') {
-                    $('#h').css('cursor', 'default');
-                    $('#h').html('<p>O</p>');
-                    board[2][1] = 'o';
+                    updateAndDraw('#h');
                 } else if (board[2][2] === 'x' && board[0][1] === 'x') {
-                    $('#c').css('cursor', 'default');
-                    $('#c').html('<p>O</p>');
-                    board[0][2] = 'o';
+                    updateAndDraw('#c');
                 } else if (board[2][2] === 'x' && board[1][0] === 'x') {
-                    $('#g').css('cursor', 'default');
-                    $('#g').html('<p>O</p>');
-                    board[2][0] = 'o';
+                    updateAndDraw('#g');
                 } else if (board[2][0] === 'x' && board[2][1] === 'x') {
-                    $('#i').css('cursor', 'default');
-                    $('#i').html('<p>O</p>');
-                    board[2][2] = 'o';
+                    updateAndDraw('#i');
                 } else if (board[2][0] === 'x' && board[1][0] === 'x') {
-                    $('#a').css('cursor', 'default');
-                    $('#a').html('<p>O</p>');
-                    board[0][0] = 'o';
+                    updateAndDraw('#a');
                 } else if (board[2][0] === 'x' && board[0][1] === 'x') {
-                    $('#a').css('cursor', 'default');
-                    $('#a').html('<p>O</p>');
-                    board[0][0] = 'o';
+                    updateAndDraw('#a');
                 } else if (board[2][0] === 'x' && board[1][2] === 'x') {
-                    $('#i').css('cursor', 'default');
-                    $('#i').html('<p>O</p>');
-                    board[2][2] = 'o';
+                    updateAndDraw('#i');
                 } else if (board[0][1] === 'x' && board[1][2] === 'x') {
-                    $('#c').css('cursor', 'default');
-                    $('#c').html('<p>O</p>');
-                    board[0][2] = 'o';
+                    updateAndDraw('#c');
                 } else if (board[0][1] === 'x' && board[1][0] === 'x') {
-                    $('#a').css('cursor', 'default');
-                    $('#a').html('<p>O</p>');
-                    board[0][0] = 'o';
+                    updateAndDraw('#a');
                 } else if (board[2][1] === 'x' && board[1][2] === 'x') {
-                    $('#i').css('cursor', 'default');
-                    $('#i').html('<p>O</p>');
-                    board[2][2] = 'o';
+                    updateAndDraw('#i');
                 } else if (board[2][1] === 'x' && board[1][0] === 'x') {
-                    $('#g').css('cursor', 'default');
-                    $('#g').html('<p>O</p>');
-                    board[2][0] = 'o';
+                    updateAndDraw('#g');
                 };//End if inner block
           } else { //The only possible combination left is with X in two opposite corners
 
             //Respond by taking the top center tile
-            $('#b').css('cursor', 'default');
-            $('#b').html('<p>O</p>');
-            board[0][1] = 'o';
+            updateAndDraw('#b');
           };//End of potential human history checks
         };//End of main block for turn 2
       };//End if turn two
 
       //Turn three for Computer
-      if (turn === 3) {
+      if (turn === 5) {
 
         if (board[1][1] === 'x') {
           if (board[0][0] === 'o' && board[0][1] === 'empty' ||
@@ -625,21 +566,13 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
               board[2][2] === 'o' && board[1][2] === 'empty' ||
               board[1][2] === 'o' && board[2][2] === 'empty') {
                 if (board[0][0] === 'o' && board[0][1] === 'empty') {
-                    $('#b').css('cursor', 'default');
-                    $('#b').html('<p>O</p>');
-                    board[0][1] = 'o';
+                    updateAndDraw('#b');
                 } else if (board[0][1] === 'o' && board[0][0] === 'empty') {
-                    $('#a').css('cursor', 'default');
-                    $('#a').html('<p>O</p>');
-                    board[0][0] = 'o';
+                    updateAndDraw('#a');
                 } else if (board[2][2] === 'o' && board[1][2] === 'empty') {
-                    $('#f').css('cursor', 'default');
-                    $('#f').html('<p>O</p>');
-                    board[1][2] = 'o';
+                    updateAndDraw('#f');
                 } else if (board[1][2] === 'o' && board[2][2] === 'empty') {
-                    $('#i').css('cursor', 'default');
-                    $('#i').html('<p>O</p>');
-                    board[2][2] = 'o';
+                    updateAndDraw('#i');
                 };//End of inner block
           } else if (board[0][0] === 'x' && board[2][2] === 'empty' ||
                      board[0][1] === 'x' && board[2][1] === 'empty' ||
@@ -648,29 +581,17 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                      board[2][1] === 'x' && board[0][1] === 'empty' ||
                      board[2][2] === 'x' && board[0][0] === 'empty') {
                         if (board[0][0] === 'x' && board[2][2] === 'empty') {
-                            $('#i').css('cursor', 'default');
-                            $('#i').html('<p>O</p>');
-                            board[2][2] = 'o';
+                            updateAndDraw('#i');
                         } else if (board[0][1] === 'x' && board[2][1] === 'empty') {
-                            $('#h').css('cursor', 'default');
-                            $('#h').html('<p>O</p>');
-                            board[2][1] = 'o';
+                            updateAndDraw('#h');
                         } else if (board[1][0] === 'x' && board[1][2] === 'empty') {
-                            $('#f').css('cursor', 'default');
-                            $('#f').html('<p>O</p>');
-                            board[1][2] = 'o';
+                            updateAndDraw('#f');
                         } else if (board[1][2] === 'x' && board[1][0] === 'empty') {
-                            $('#d').css('cursor', 'default');
-                            $('#d').html('<p>O</p>');
-                            board[1][0] = 'o';
+                            updateAndDraw('#d');
                         } else if (board[2][1] === 'x' && board[0][1] === 'empty') {
-                            $('#b').css('cursor', 'default');
-                            $('#b').html('<p>O</p>');
-                            board[0][1] = 'o';
+                            updateAndDraw('#b');
                         } else if (board[2][2] === 'x' && board[0][0] === 'empty') {
-                            $('#a').css('cursor', 'default');
-                            $('#a').html('<p>O</p>');
-                            board[0][0] = 'o';
+                            updateAndDraw('#a');
                         };//End of inner block
           };//End of victory checks
         } else {//If the center tile is not an X
@@ -683,37 +604,21 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
               board[2][1] === 'o' && board[0][1] === 'empty' ||
               board[2][2] === 'o' && board[0][0] === 'empty') {
                 if (board[0][0] === 'o' && board[2][2] === 'empty') {
-                    $('#i').css('cursor', 'default');
-                    $('#i').html('<p>O</p>');
-                    board[2][2] = 'o';
+                    updateAndDraw('#i');
                 } else if (board[0][1] === 'o' && board[2][1] === 'empty') {
-                    $('#h').css('cursor', 'default');
-                    $('#h').html('<p>O</p>');
-                    board[2][1] = 'o';
+                    updateAndDraw('#h');
                 } else if (board[0][2] === 'o' && board[2][0] === 'empty') {
-                    $('#g').css('cursor', 'default');
-                    $('#g').html('<p>O</p>');
-                    board[2][0] = 'o';
+                    updateAndDraw('#g');
                 } else if (board[1][0] === 'o' && board[1][2] === 'empty') {
-                    $('#f').css('cursor', 'default');
-                    $('#f').html('<p>O</p>');
-                    board[1][2] = 'o';
+                    updateAndDraw('#f');
                 } else if (board[1][2] === 'o' && board[1][0] === 'empty') {
-                    $('#d').css('cursor', 'default');
-                    $('#d').html('<p>O</p>');
-                    board[1][0] = 'o';
+                    updateAndDraw('#d');
                 } else if (board[2][0] === 'o' && board[0][2] === 'empty') {
-                    $('#c').css('cursor', 'default');
-                    $('#c').html('<p>O</p>');
-                    board[0][2] = 'o';
+                    updateAndDraw('#c');
                 } else if (board[2][1] === 'o' && board[0][1] === 'empty') {
-                    $('#b').css('cursor', 'default');
-                    $('#b').html('<p>O</p>');
-                    board[0][1] = 'o';
+                    updateAndDraw('#b');
                 } else if (board[2][2] === 'o' && board[0][0] === 'empty') {
-                    $('#a').css('cursor', 'default');
-                    $('#a').html('<p>O</p>');
-                    board[0][0] = 'o';
+                    updateAndDraw('#a');
                 };//End of inner block
           } else if (board[0][0] === 'x' && board[0][2] === 'x' && board[0][1] === 'empty' ||
                      board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'empty' ||
@@ -728,78 +633,46 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                      board[2][0] === 'x' && board[1][0] === 'x' && board[0][0] === 'empty' ||
                      board[2][0] === 'x' && board[2][1] === 'x' && board[2][2] === 'empty') {
                         if (board[0][0] === 'x' && board[0][2] === 'x' && board[0][1] === 'empty') {
-                            $('#b').css('cursor', 'default');
-                            $('#b').html('<p>O</p>');
-                            board[0][1] = 'o';
+                            updateAndDraw('#b');
                         } else if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'empty') {
-                            $('#c').css('cursor', 'default');
-                            $('#c').html('<p>O</p>');
-                            board[0][2] = 'o';
+                            updateAndDraw('#c');
                         } else if (board[0][0] === 'x' && board[1][0] === 'x' && board[2][0] === 'empty') {
-                            $('#g').css('cursor', 'default');
-                            $('#g').html('<p>O</p>');
-                            board[2][0] = 'o';
+                            updateAndDraw('#g');
                         } else if (board[0][2] === 'x' && board[2][2] === 'x' && board[1][2] === 'empty') {
-                            $('#f').css('cursor', 'default');
-                            $('#f').html('<p>O</p>');
-                            board[1][2] = 'o';
+                            updateAndDraw('#f');
                         } else if (board[0][2] === 'x' && board[0][1] === 'x' && board[0][0] === 'empty') {
-                            $('#a').css('cursor', 'default');
-                            $('#a').html('<p>O</p>');
-                            board[0][0] = 'o';
+                            updateAndDraw('#a');
                         } else if (board[0][2] === 'x' && board[1][2] === 'x' && board[2][2] === 'empty') {
-                            $('#i').css('cursor', 'default');
-                            $('#i').html('<p>O</p>');
-                            board[2][2] = 'o';
+                            updateAndDraw('#i');
                         } else if (board[2][2] === 'x' && board[2][0] === 'x' && board[2][1] === 'empty') {
-                            $('#h').css('cursor', 'default');
-                            $('#h').html('<p>O</p>');
-                            board[2][1] = 'o';
+                            updateAndDraw('#h');
                         } else if (board[2][2] === 'x' && board[2][1] === 'x' && board[2][0] === 'empty') {
-                            $('#g').css('cursor', 'default');
-                            $('#g').html('<p>O</p>');
-                            board[2][0] = 'o';
+                            updateAndDraw('#g');
                         } else if (board[2][2] === 'x' && board[1][2] === 'x' && board[0][2] === 'empty') {
-                            $('#c').css('cursor', 'default');
-                            $('#c').html('<p>O</p>');
-                            board[0][2] = 'o';
+                            updateAndDraw('#c');
                         } else if (board[2][0] === 'x' && board[0][0] === 'x' && board[1][0] === 'empty') {
-                            $('#d').css('cursor', 'default');
-                            $('#d').html('<p>O</p>');
-                            board[1][0] = 'o';
+                            updateAndDraw('#d');
                         } else if (board[2][0] === 'x' && board[1][0] === 'x' && board[0][0] === 'empty') {
-                            $('#a').css('cursor', 'default');
-                            $('#a').html('<p>O</p>');
-                            board[0][0] = 'o';
+                            updateAndDraw('#a');
                         } else if (board[2][0] === 'x' && board[2][1] === 'x' && board[2][2] === 'empty') {
-                            $('#i').css('cursor', 'default');
-                            $('#i').html('<p>O</p>');
-                            board[2][2] = 'o';
+                            updateAndDraw('#i');
                         };//End of inner block
           } else {//Take an avalible edge tile
             if (board[0][1] === 'empty') {
-                $('#b').css('cursor', 'default');
-                $('#b').html('<p>O</p>');
-                board[0][1] = 'o';
+                updateAndDraw('#b');
             } else if (board[1][0] === 'empty') {
-                $('#d').css('cursor', 'default');
-                $('#d').html('<p>O</p>');
-                board[1][0] = 'o';
+                updateAndDraw('#d');
             } else if (board[1][2] === 'empty') {
-                $('#f').css('cursor', 'default');
-                $('#f').html('<p>O</p>');
-                board[1][2] = 'o';
+                updateAndDraw('#f');
             } else if (board[2][1] === 'empty') {
-                $('#h').css('cursor', 'default');
-                $('#h').html('<p>O</p>');
-                board[2][1] = 'o';
+                updateAndDraw('#h');
             };//End of inner block
           };//End of the center tile is not an X
         };//End of checking if center tile is an X
       };//End of turn three
 
       //Turn four for Computer
-      if (turn === 4) {
+      if (turn === 7) {
 
         if (board[1][1] === 'x') {
           if (board[0][0] === 'o' && board[0][1] === 'empty' ||
@@ -807,21 +680,13 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
               board[2][2] === 'o' && board[1][2] === 'empty' ||
               board[1][2] === 'o' && board[2][2] === 'empty') {
                 if (board[0][0] === 'o' && board[0][1] === 'empty') {
-                    $('#b').css('cursor', 'default');
-                    $('#b').html('<p>O</p>');
-                    board[0][1] = 'o';
+                    updateAndDraw('#b');
                 } else if (board[0][1] === 'o' && board[0][0] === 'empty') {
-                    $('#a').css('cursor', 'default');
-                    $('#a').html('<p>O</p>');
-                    board[0][0] = 'o';
+                    updateAndDraw('#a');
                 } else if (board[2][2] === 'o' && board[1][2] === 'empty') {
-                    $('#f').css('cursor', 'default');
-                    $('#f').html('<p>O</p>');
-                    board[1][2] = 'o';
+                    updateAndDraw('#f');
                 } else if (board[1][2] === 'o' && board[2][2] === 'empty') {
-                    $('#i').css('cursor', 'default');
-                    $('#i').html('<p>O</p>');
-                    board[2][2] = 'o';
+                    updateAndDraw('#i');
                 };//End of inner block
           } else if (board[0][0] === 'x' && board[2][2] === 'empty' ||
                      board[0][1] === 'x' && board[2][1] === 'empty' ||
@@ -830,40 +695,24 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                      board[2][1] === 'x' && board[0][1] === 'empty' ||
                      board[2][2] === 'x' && board[0][0] === 'empty') {
                         if (board[0][0] === 'x' && board[2][2] === 'empty') {
-                            $('#i').css('cursor', 'default');
-                            $('#i').html('<p>O</p>');
-                            board[2][2] = 'o';
+                            updateAndDraw('#i');
                         } else if (board[0][1] === 'x' && board[2][1] === 'empty') {
-                            $('#h').css('cursor', 'default');
-                            $('#h').html('<p>O</p>');
-                            board[2][1] = 'o';
+                            updateAndDraw('#h');
                         } else if (board[1][0] === 'x' && board[1][2] === 'empty') {
-                            $('#f').css('cursor', 'default');
-                            $('#f').html('<p>O</p>');
-                            board[1][2] = 'o';
+                            updateAndDraw('#f');
                         } else if (board[1][2] === 'x' && board[1][0] === 'empty') {
-                            $('#d').css('cursor', 'default');
-                            $('#d').html('<p>O</p>');
-                            board[1][0] = 'o';
+                            updateAndDraw('#d');
                         } else if (board[2][1] === 'x' && board[0][1] === 'empty') {
-                            $('#b').css('cursor', 'default');
-                            $('#b').html('<p>O</p>');
-                            board[0][1] = 'o';
+                            updateAndDraw('#b');
                         } else if (board[2][2] === 'x' && board[0][0] === 'empty') {
-                            $('#a').css('cursor', 'default');
-                            $('#a').html('<p>O</p>');
-                            board[0][0] = 'o';
+                            updateAndDraw('#a');
                         };//End of inner block
           } else if (board[0][0] === 'empty' && board[2][2] === 'empty' ||
                      board[1][0] === 'empty' && board[1][2] === 'empty') {
                         if (board[0][0] === 'empty' && board[2][2] === 'empty') {
-                            $('#a').css('cursor', 'default');
-                            $('#a').html('<p>O</p>');
-                            board[0][0] = 'o';
+                            updateAndDraw('#a');
                         } else {
-                            $('#d').css('cursor', 'default');
-                            $('#d').html('<p>O</p>');
-                            board[1][0] = 'o';
+                            updateAndDraw('#d');
                         };//End of inner block
           };//End of victory checks
         } else {//If the center tile is not an X
@@ -872,21 +721,13 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
               board[1][2] === 'o' && board[1][0] === 'empty' ||
               board[2][1] === 'o' && board[0][1] === 'empty') {
                 if (board[0][1] === 'o' && board[2][1] === 'empty') {
-                    $('#h').css('cursor', 'default');
-                    $('#h').html('<p>O</p>');
-                    board[2][1] = 'o';
+                    updateAndDraw('#h');
                 } else if (board[1][0] === 'o' && board[1][2] === 'empty') {
-                    $('#f').css('cursor', 'default');
-                    $('#f').html('<p>O</p>');
-                    board[1][2] = 'o';
+                    updateAndDraw('#f');
                 } else if (board[1][2] === 'o' && board[1][0] === 'empty') {
-                    $('#d').css('cursor', 'default');
-                    $('#d').html('<p>O</p>');
-                    board[1][0] = 'o';
+                    updateAndDraw('#d');
                 } else if (board[2][1] === 'o' && board[0][1] === 'empty') {
-                    $('#b').css('cursor', 'default');
-                    $('#b').html('<p>O</p>');
-                    board[0][1] = 'o';
+                    updateAndDraw('#b');
                 };//End of inner block
           } else if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'empty' ||
                      board[0][0] === 'x' && board[1][0] === 'x' && board[2][0] === 'empty' ||
@@ -901,168 +742,56 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                      board[2][2] === 'x' && board[2][1] === 'x' && board[2][0] === 'empty' ||
                      board[2][2] === 'x' && board[2][0] === 'x' && board[2][1] === 'empty') {
                         if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'empty') {
-                            $('#c').css('cursor', 'default');
-                            $('#c').html('<p>O</p>');
-                            board[0][2] = 'o';
+                            updateAndDraw('#c');
                         } else if (board[0][0] === 'x' && board[1][0] === 'x' && board[2][0] === 'empty') {
-                            $('#g').css('cursor', 'default');
-                            $('#g').html('<p>O</p>');
-                            board[2][0] = 'o';
+                            updateAndDraw('#g');
                         } else if (board[0][0] === 'x' && board[0][2] === 'x' && board[0][1] === 'empty') {
-                            $('#b').css('cursor', 'default');
-                            $('#b').html('<p>O</p>');
-                            board[0][1] = 'o';
+                            updateAndDraw('#b');
                         } else if (board[0][2] === 'x' && board[0][1] === 'x' && board[0][0] === 'empty') {
-                            $('#a').css('cursor', 'default');
-                            $('#a').html('<p>O</p>');
-                            board[0][0] = 'o';
+                            updateAndDraw('#a');
                         } else if (board[0][2] === 'x' && board[1][2] === 'x' && board[2][2] === 'empty') {
-                            $('#i').css('cursor', 'default');
-                            $('#i').html('<p>O</p>');
-                            board[2][2] = 'o';
+                            updateAndDraw('#i');
                         } else if (board[0][2] === 'x' && board[2][2] === 'x' && board[1][2] === 'empty') {
-                            $('#f').css('cursor', 'default');
-                            $('#f').html('<p>O</p>');
-                            board[1][2] = 'o';
+                            updateAndDraw('#f');
                         } else if (board[2][0] === 'x' && board[1][0] === 'x' && board[0][0] === 'empty') {
-                            $('#a').css('cursor', 'default');
-                            $('#a').html('<p>O</p>');
-                            board[0][0] = 'o';
+                            updateAndDraw('#a');
                         } else if (board[2][0] === 'x' && board[2][1] === 'x' && board[2][2] === 'empty') {
-                            $('#i').css('cursor', 'default');
-                            $('#i').html('<p>O</p>');
-                            board[2][2] = 'o';
+                            updateAndDraw('#i');
                         } else if (board[2][0] === 'x' && board[0][0] === 'x' && board[1][0] === 'empty') {
-                            $('#d').css('cursor', 'default');
-                            $('#d').html('<p>O</p>');
-                            board[1][0] = 'o';
+                            updateAndDraw('#d');
                         } else if (board[2][2] === 'x' && board[1][2] === 'x' && board[0][2] === 'empty') {
-                            $('#c').css('cursor', 'default');
-                            $('#c').html('<p>O</p>');
-                            board[0][2] = 'o';
+                            updateAndDraw('#c');
                         } else if (board[2][2] === 'x' && board[2][1] === 'x' && board[2][0] === 'empty') {
-                            $('#g').css('cursor', 'default');
-                            $('#g').html('<p>O</p>');
-                            board[2][0] = 'o';
+                            updateAndDraw('#g');
                         } else if (board[2][2] === 'x' && board[2][0] === 'x' && board[2][1] === 'empty') {
-                            $('#h').css('cursor', 'default');
-                            $('#h').html('<p>O</p>');
-                            board[2][1] = 'o';
+                            updateAndDraw('#h');
                         };//End of inner block
           } else {//Go anywhere its going to be a draw
             if (board[0][0] === 'empty') {
-                $('#a').css('cursor', 'default');
-                $('#a').html('<p>O</p>');
-                board[0][0] = 'o';
+                updateAndDraw('#a');
             } else if (board[0][1] === 'empty') {
-                $('#b').css('cursor', 'default');
-                $('#b').html('<p>O</p>');
-                board[0][1] = 'o';
+                updateAndDraw('#b');
             } else if (board[0][2] === 'empty') {
-                $('#c').css('cursor', 'default');
-                $('#c').html('<p>O</p>');
-                board[0][2] = 'o';
+                updateAndDraw('#c');
             } else if (board[1][0] === 'empty') {
-                $('#d').css('cursor', 'default');
-                $('#d').html('<p>O</p>');
-                board[1][0] = 'o';
+                updateAndDraw('#d');
             } else if (board[1][2] === 'empty') {
-                $('#f').css('cursor', 'default');
-                $('#f').html('<p>O</p>');
-                board[1][2] = 'o';
+                updateAndDraw('#f');
             } else if (board[2][0] === 'empty') {
-                $('#g').css('cursor', 'default');
-                $('#g').html('<p>O</p>');
-                board[2][0] = 'o';
+                updateAndDraw('#g');
             } else if (board[2][1] === 'empty') {
-                $('#h').css('cursor', 'default');
-                $('#h').html('<p>O</p>');
-                board[2][1] = 'o';
+                updateAndDraw('#h');
             } else if (board[2][2] === 'empty') {
-                $('#i').css('cursor', 'default');
-                $('#i').html('<p>O</p>');
-                board[2][2] = 'o';
+                updateAndDraw('#i');
             };//End of inner block
           };//End of the center tile is not an X
         };//End of checking if center tile is an X
       };//End of turn four
 
-      //Checking victory for O
-      if (board[0][0] === 'o' && board[0][1] === 'o' && board[0][2] === 'o' || //Looking for horizontal victory row 0
-          board[1][0] === 'o' && board[1][1] === 'o' && board[1][2] === 'o' || //Looking for horizontal victory row 1
-          board[2][0] === 'o' && board[2][1] === 'o' && board[2][2] === 'o' || //Looking for horizontal victory row 2
-          board[0][0] === 'o' && board[1][0] === 'o' && board[2][0] === 'o' || //Looking for vertical victory column 0
-          board[0][1] === 'o' && board[1][1] === 'o' && board[2][1] === 'o' || //Looking for vertical victory column 1
-          board[0][2] === 'o' && board[1][2] === 'o' && board[2][2] === 'o' || //Looking for vertical victory column 2
-          board[0][0] === 'o' && board[1][1] === 'o' && board[2][2] === 'o' || //Looking for backward diagonal
-          board[0][2] === 'o' && board[1][1] === 'o' && board[2][0] === 'o') { //Looking for forward diagonal
+      //Checking for victory or draw at the end of each turn
+      checkVictory('O', true);
+      checkDraw();
 
-            //This code only runs if one of the above conditions evaluates to true
-
-            if (board[0][0] === 'o' && board[0][1] === 'o' && board[0][2] === 'o') {
-
-              //The following statements execute an appropriate response for this case
-
-              $('#a p').css('color', 'red');
-              $('#b p').css('color', 'red');
-              $('#c p').css('color', 'red');
-
-            } else if (board[1][0] === 'o' && board[1][1] === 'o' && board[1][2] === 'o') {
-              $('#d p').css('color', 'red');
-              $('#e p').css('color', 'red');
-              $('#f p').css('color', 'red');
-            } else if (board[2][0] === 'o' && board[2][1] === 'o' && board[2][2] === 'o') {
-              $('#g p').css('color', 'red');
-              $('#h p').css('color', 'red');
-              $('#i p').css('color', 'red');
-            } else if (board[0][0] === 'o' && board[1][0] === 'o' && board[2][0] === 'o') {
-              $('#a p').css('color', 'red');
-              $('#d p').css('color', 'red');
-              $('#g p').css('color', 'red');
-            } else if (board[0][1] === 'o' && board[1][1] === 'o' && board[2][1] === 'o') {
-              $('#b p').css('color', 'red');
-              $('#e p').css('color', 'red');
-              $('#h p').css('color', 'red');
-            } else if (board[0][2] === 'o' && board[1][2] === 'o' && board[2][2] === 'o') {
-              $('#c p').css('color', 'red');
-              $('#f p').css('color', 'red');
-              $('#i p').css('color', 'red');
-            } else if (board[0][0] === 'o' && board[1][1] === 'o' && board[2][2] === 'o') {
-              $('#a p').css('color', 'red');
-              $('#e p').css('color', 'red');
-              $('#i p').css('color', 'red');
-            } else if (board[0][2] === 'o' && board[1][1] === 'o' && board[2][0] === 'o') {
-              $('#c p').css('color', 'red');
-              $('#e p').css('color', 'red');
-              $('#g p').css('color', 'red');
-            };
-
-        victory = true;//Triggering victory
-
-        //Changing CSS
-        $('.win').text('Computer Wins!');
-        $('.win').css('display', 'block');
-        $('.status').css('display', 'none');
-        $('.tile').css('cursor', 'default');
-
-        //Turning off click listener off for all elements of tile class
-        $('.tile').off('click');
-
-      };
-
-      //Checking for Draw
-      //This code only runs if the turn counter reaches 9 and no victory has been triggered
-      if (turn === 5 && victory === false) {
-
-        //Updating CSS
-        $('.win').text('It\'s a Draw!');
-        $('.win').css('display', 'block');
-        $('.status').css('display', 'none');
-        $('.tile').css('cursor', 'default');
-
-        //Turning off click listener off for all elements of tile class
-        $('.tile').off('click');
-      };
     });//End of click event (one turn)
   });//End of Human vs Computer game option
 
