@@ -396,6 +396,8 @@ $(document).on('ready', function () { //Only loads JavaScript once DOM is ready
 
         if (board[1][1] === 'x') { //Checking if human took center tile
 
+          //If human took center tile respond by taking upper right tile
+
           //Updating CSS and HTML
           $('#c').css('cursor', 'default');
           $('#c').html('<p>O</p>');
@@ -409,6 +411,202 @@ $(document).on('ready', function () { //Only loads JavaScript once DOM is ready
           board[1][1] = 'o';
         }; //End of inner Block
       }; //End of turn one
+
+      if (turn === 2) {
+
+        //First checking if the center tile is an X
+        if (board[1][1] === 'x') {
+
+          //If the center tile is an X and the lower left corner isn't the following code will execute
+          //This indicates that human didn't play in the opposite corner of the first O
+          //This also implies that the human has two in a row/diagonal and must be stopped
+          if (board[2][0] != 'x') {
+
+            //The following statements check all possible spots for the second X
+            if (board[0][0] === 'x') {
+
+              //Respond by blocking the potential three in a row/diagonal
+
+              //Updateing CSS and HTML
+              $('#i').css('cursor', 'default');
+              $('#i').html('<p>O</p>');
+
+              //Updateing array
+              board[2][2] = 'o';
+
+            } else if (board[0][1] === 'x') {
+              $('#h').css('cursor', 'default');
+              $('#h').html('<p>O</p>');
+              board[2][1] = 'o';
+            } else if (board[1][0] === 'x') {
+              $('#f').css('cursor', 'default');
+              $('#f').html('<p>O</p>');
+              board[1][2] = 'o';
+            } else if (board[1][2] === 'x') {
+              $('#d').css('cursor', 'default');
+              $('#d').html('<p>O</p>');
+              board[1][0] = 'o';
+            } else if (board[2][1] === 'x') {
+              $('#b').css('cursor', 'default');
+              $('#b').html('<p>O</p>');
+              board[0][1] = 'o';
+            } else if (board[2][2] === 'x') {
+              $('#a').css('cursor', 'default');
+              $('#a').html('<p>O</p>');
+              board[0][0] = 'o';
+            };//End of inner block
+
+          } else {
+            //If the human took the corner opposite the first O
+            //Respond by taking the upper left corner
+
+            $('#a').css('cursor', 'default');
+            $('#a').html('<p>O</p>');
+            board[0][0] = 'o';
+          };//End of corner check
+
+        } else { //If the center tile isn't an X
+
+          //The following logic checks all potential human victories
+          //If a potential victorie is found it must be blocked
+          if (board[0][0] === 'x' && board[0][1] === 'x' || //Checking possible victories with an X in the upper left corner
+              board[0][0] === 'x' && board[0][2] === 'x' || //
+              board[0][0] === 'x' && board[1][0] === 'x' || //
+              board[0][0] === 'x' && board[2][0] === 'x' || //
+              board[0][0] === 'x' && board[1][2] === 'x' || //
+              board[0][0] === 'x' && board[2][1] === 'x' || //
+              board[0][2] === 'x' && board[0][1] === 'x' || //Checking possible victories with an X in the upper right corner
+              board[0][2] === 'x' && board[1][2] === 'x' || //
+              board[0][2] === 'x' && board[2][2] === 'x' || //
+              board[0][2] === 'x' && board[1][0] === 'x' || //
+              board[0][2] === 'x' && board[2][1] === 'x' || //
+              board[2][2] === 'x' && board[1][2] === 'x' || //Checking possible victories with an X in the lower right corner
+              board[2][2] === 'x' && board[2][1] === 'x' || //
+              board[2][2] === 'x' && board[2][0] === 'x' || //
+              board[2][2] === 'x' && board[0][1] === 'x' || //
+              board[2][2] === 'x' && board[1][0] === 'x' || //
+              board[2][0] === 'x' && board[2][1] === 'x' || //Checking possible victories with an X in the lower left corner
+              board[2][0] === 'x' && board[1][0] === 'x' || //
+              board[2][0] === 'x' && board[0][1] === 'x' || //
+              board[2][0] === 'x' && board[1][2] === 'x' || //
+              board[0][1] === 'x' && board[1][2] === 'x' || //Checking for two edge tile combo
+              board[0][1] === 'x' && board[1][0] === 'x' || //
+              board[2][1] === 'x' && board[1][2] === 'x' || //
+              board[2][1] === 'x' && board[1][0] === 'x') { //
+
+                //The following only runs if one of the above statements evaluates to true
+                //The following statements execute an appropriate response for each case
+                if (board[0][0] === 'x' && board[0][1] === 'x') {
+
+                    //Updateing CSS and HTML
+                    $('#c').css('cursor', 'default');
+                    $('#c').html('<p>O</p>');
+
+                    //Updateing array
+                    board[0][2] = 'o';
+                    
+                } else if (board[0][0] === 'x' && board[0][2] === 'x') {
+                    $('#b').css('cursor', 'default');
+                    $('#b').html('<p>O</p>');
+                    board[0][1] = 'o';
+                } else if (board[0][0] === 'x' && board[1][0] === 'x') {
+                    $('#g').css('cursor', 'default');
+                    $('#g').html('<p>O</p>');
+                    board[2][0] = 'o';
+                } else if (board[0][0] === 'x' && board[2][0] === 'x') {
+                    $('#d').css('cursor', 'default');
+                    $('#d').html('<p>O</p>');
+                    board[1][0] = 'o';
+                } else if (board[0][0] === 'x' && board[1][2] === 'x') {
+                    $('#c').css('cursor', 'default');
+                    $('#c').html('<p>O</p>');
+                    board[0][2] = 'o';
+                } else if (board[0][0] === 'x' && board[2][1] === 'x') {
+                    $('#g').css('cursor', 'default');
+                    $('#g').html('<p>O</p>');
+                    board[2][0] = 'o';
+                } else if (board[0][2] === 'x' && board[0][1] === 'x') {
+                    $('#a').css('cursor', 'default');
+                    $('#a').html('<p>O</p>');
+                    board[0][0] = 'o';
+                } else if (board[0][2] === 'x' && board[1][2] === 'x') {
+                    $('#i').css('cursor', 'default');
+                    $('#i').html('<p>O</p>');
+                    board[2][2] = 'o';
+                } else if (board[0][2] === 'x' && board[2][2] === 'x') {
+                    $('#f').css('cursor', 'default');
+                    $('#f').html('<p>O</p>');
+                    board[1][2] = 'o';
+                } else if (board[0][2] === 'x' && board[1][0] === 'x') {
+                    $('#a').css('cursor', 'default');
+                    $('#a').html('<p>O</p>');
+                    board[0][0] = 'o';
+                } else if (board[0][2] === 'x' && board[2][1] === 'x') {
+                    $('#i').css('cursor', 'default');
+                    $('#i').html('<p>O</p>');
+                    board[2][2] = 'o';
+                } else if (board[2][2] === 'x' && board[1][2] === 'x') {
+                    $('#c').css('cursor', 'default');
+                    $('#c').html('<p>O</p>');
+                    board[0][2] = 'o';
+                } else if (board[2][2] === 'x' && board[2][1] === 'x') {
+                    $('#g').css('cursor', 'default');
+                    $('#g').html('<p>O</p>');
+                    board[2][0] = 'o';
+                } else if (board[2][2] === 'x' && board[2][0] === 'x') {
+                    $('#h').css('cursor', 'default');
+                    $('#h').html('<p>O</p>');
+                    board[2][1] = 'o';
+                } else if (board[2][2] === 'x' && board[0][1] === 'x') {
+                    $('#c').css('cursor', 'default');
+                    $('#c').html('<p>O</p>');
+                    board[0][2] = 'o';
+                } else if (board[2][2] === 'x' && board[1][0] === 'x') {
+                    $('#g').css('cursor', 'default');
+                    $('#g').html('<p>O</p>');
+                    board[2][0] = 'o';
+                } else if (board[2][0] === 'x' && board[2][1] === 'x') {
+                    $('#i').css('cursor', 'default');
+                    $('#i').html('<p>O</p>');
+                    board[2][2] = 'o';
+                } else if (board[2][0] === 'x' && board[1][0] === 'x') {
+                    $('#a').css('cursor', 'default');
+                    $('#a').html('<p>O</p>');
+                    board[0][0] = 'o';
+                } else if (board[2][0] === 'x' && board[0][1] === 'x') {
+                    $('#a').css('cursor', 'default');
+                    $('#a').html('<p>O</p>');
+                    board[0][0] = 'o';
+                } else if (board[2][0] === 'x' && board[1][2] === 'x') {
+                    $('#i').css('cursor', 'default');
+                    $('#i').html('<p>O</p>');
+                    board[2][2] = 'o';
+                } else if (board[0][1] === 'x' && board[1][2] === 'x') {
+                    $('#c').css('cursor', 'default');
+                    $('#c').html('<p>O</p>');
+                    board[0][2] = 'o';
+                } else if (board[0][1] === 'x' && board[1][0] === 'x') {
+                    $('#a').css('cursor', 'default');
+                    $('#a').html('<p>O</p>');
+                    board[0][0] = 'o';
+                } else if (board[2][1] === 'x' && board[1][2] === 'x') {
+                    $('#i').css('cursor', 'default');
+                    $('#i').html('<p>O</p>');
+                    board[2][2] = 'o';
+                } else if (board[2][1] === 'x' && board[1][0] === 'x') {
+                    $('#g').css('cursor', 'default');
+                    $('#g').html('<p>O</p>');
+                    board[2][0] = 'o';
+                };//End if inner block
+          } else { //The only possible combination left is with X in two opposite corners
+
+            //Respond by taking the top center tile
+            $('#b').css('cursor', 'default');
+            $('#b').html('<p>O</p>');
+            board[0][1] = 'o';
+          };//End of potential human history checks
+        };//End of main block for turn 2
+      };//End if turn two
 
       //Checking victory for X
       if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'x' || //Looking for horizontal victory row 0
