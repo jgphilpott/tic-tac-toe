@@ -10,6 +10,132 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
     ['empty', 'empty', 'empty'],
   ];
 
+  var updateAndDraw = function(key) {
+
+    if (turn % 2 === 0) { //Checking whose turn it is
+
+      //Passing the key argument to this switch in order to update the board array
+      switch (key) {
+
+        //Checks each case systematically
+        case '#a':
+
+          if (board[0][0] === 'empty') {//Checks tile isnt already occupied
+              board[0][0] = 'x';//Assigns new value
+          };
+          break;
+
+        case '#b':
+          if (board[0][1] === 'empty') {
+              board[0][1] = 'x';
+          };
+          break;
+        case '#c':
+          if (board[0][2] === 'empty') {
+              board[0][2] = 'x';
+          };
+          break;
+        case '#d':
+          if (board[1][0] === 'empty') {
+              board[1][0] = 'x';
+          };
+          break;
+        case '#e':
+          if (board[1][1] === 'empty') {
+              board[1][1] = 'x';
+          };
+          break;
+        case '#f':
+          if (board[1][2] === 'empty') {
+              board[1][2] = 'x';
+          };
+          break;
+        case '#g':
+          if (board[2][0] === 'empty') {
+              board[2][0] = 'x';
+          };
+          break;
+        case '#h':
+          if (board[2][1] === 'empty') {
+              board[2][1] = 'x';
+          };
+          break;
+        case '#i':
+          if (board[2][2] === 'empty') {
+              board[2][2] = 'x';
+          };
+          break;
+        default:
+          console.log('Error');
+      };//End of switch
+
+      $(key).html('<p>X</p>'); //Updating HTML
+
+    } else {
+
+      //Same switch as above except for O rather than X
+      switch (key) {
+        case '#a':
+          if (board[0][0] === 'empty') {
+              board[0][0] = 'o';
+          };
+          break;
+        case '#b':
+          if (board[0][1] === 'empty') {
+              board[0][1] = 'o';
+          };
+          break;
+        case '#c':
+          if (board[0][2] === 'empty') {
+              board[0][2] = 'o';
+          };
+          break;
+        case '#d':
+          if (board[1][0] === 'empty') {
+              board[1][0] = 'o';
+          };
+          break;
+        case '#e':
+          if (board[1][1] === 'empty') {
+              board[1][1] = 'o';
+          };
+          break;
+        case '#f':
+          if (board[1][2] === 'empty') {
+              board[1][2] = 'o';
+          };
+          break;
+        case '#g':
+          if (board[2][0] === 'empty') {
+              board[2][0] = 'o';
+          };
+          break;
+        case '#h':
+          if (board[2][1] === 'empty') {
+              board[2][1] = 'o';
+          };
+          break;
+        case '#i':
+          if (board[2][2] === 'empty') {
+              board[2][2] = 'o';
+          };
+          break;
+        default:
+          console.log('Error');
+      };//End of switch
+      $(key).html('<p>O</p>');
+    };//End of whose turn check
+
+    //Changing cursor and incrementing turn
+    $(key).css('cursor', 'default');
+    turn++
+
+  };//End of updateAndDraw function
+
+  // var drawVictory = function(victoryType) {
+  //   console.log("Hello!");
+  // };
+
   //Menu Option 1
   $('#op1').on('click', function() {
 
@@ -24,127 +150,35 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
       //Updating board array, table css and incrementing turn variable by +1
       switch (event.target.id) {
 
+        //Checking each case systematically
         case 'a':
 
-          if (board[0][0] === 'empty') { //Ensuring tile isn't already occupied
-            if (turn % 2 === 0) { //Checking whose turn it is
-              $(this).html('<p>X</p>'); //Updating HTML
-              board[0][0] = 'x'; //Updating array
-            } else {
-              $(this).html('<p>O</p>');
-              board[0][0] = 'o';
-            };
-
-            //Changing cursor and incrementing turn
-            $('#a').css('cursor', 'default');
-            turn++
-
-          }
-          break;
+          updateAndDraw('#a');//Updating the appropriate tile
+          break;//Breaking the switch
 
         case 'b':
-          if (board[0][1] === 'empty') {
-            if (turn % 2 === 0) {
-              $(this).html('<p>X</p>');
-              board[0][1] = 'x';
-            } else {
-              $(this).html('<p>O</p>');
-              board[0][1] = 'o';
-            };
-            $('#b').css('cursor', 'default');
-            turn++
-          }
+          updateAndDraw('#b');
           break;
         case 'c':
-          if (board[0][2] === 'empty') {
-            if (turn % 2 === 0) {
-              $(this).html('<p>X</p>');
-              board[0][2] = 'x';
-            } else {
-              $(this).html('<p>O</p>');
-              board[0][2] = 'o';
-            };
-            $('#c').css('cursor', 'default');
-            turn++
-          }
+          updateAndDraw('#c');
           break;
         case 'd':
-          if (board[1][0] === 'empty') {
-            if (turn % 2 === 0) {
-              $(this).html('<p>X</p>');
-              board[1][0] = 'x';
-            } else {
-              $(this).html('<p>O</p>');
-              board[1][0] = 'o';
-            };
-            $('#d').css('cursor', 'default');
-            turn++
-          }
+          updateAndDraw('#d');
           break;
         case 'e':
-          if (board[1][1] === 'empty') {
-            if (turn % 2 === 0) {
-              $(this).html('<p>X</p>');
-              board[1][1] = 'x';
-            } else {
-              $(this).html('<p>O</p>');
-              board[1][1] = 'o';
-            };
-            $('#e').css('cursor', 'default');
-            turn++
-          }
+          updateAndDraw('#e');
           break;
         case 'f':
-          if (board[1][2] === 'empty') {
-            if (turn % 2 === 0) {
-              $(this).html('<p>X</p>');
-              board[1][2] = 'x';
-            } else {
-              $(this).html('<p>O</p>');
-              board[1][2] = 'o';
-            };
-            $('#f').css('cursor', 'default');
-            turn++
-          }
+          updateAndDraw('#f');
           break;
         case 'g':
-          if (board[2][0] === 'empty') {
-            if (turn % 2 === 0) {
-              $(this).html('<p>X</p>');
-              board[2][0] = 'x';
-            } else {
-              $(this).html('<p>O</p>');
-              board[2][0] = 'o';
-            };
-            $('#g').css('cursor', 'default');
-            turn++
-          }
+          updateAndDraw('#g');
           break;
         case 'h':
-          if (board[2][1] === 'empty') {
-            if (turn % 2 === 0) {
-              $(this).html('<p>X</p>');
-              board[2][1] = 'x';
-            } else {
-              $(this).html('<p>O</p>');
-              board[2][1] = 'o';
-            };
-            $('#h').css('cursor', 'default');
-            turn++
-          }
+          updateAndDraw('#h');
           break;
         case 'i':
-          if (board[2][2] === 'empty') {
-            if (turn % 2 === 0) {
-              $(this).html('<p>X</p>');
-              board[2][2] = 'x';
-            } else {
-              $(this).html('<p>O</p>');
-              board[2][2] = 'o';
-            };
-            $('#i').css('cursor', 'default');
-            turn++
-          }
+          updateAndDraw('#i');
           break;
         default:
           console.log('Error');
