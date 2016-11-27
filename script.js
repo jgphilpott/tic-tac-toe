@@ -708,25 +708,65 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                     board[0][0] = 'o';
                 };//End of inner block
           } else if (board[0][0] === 'x' && board[0][2] === 'x' && board[0][1] === 'empty' ||
+                     board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'empty' ||
+                     board[0][0] === 'x' && board[1][0] === 'x' && board[2][0] === 'empty' ||
                      board[0][2] === 'x' && board[2][2] === 'x' && board[1][2] === 'empty' ||
+                     board[0][2] === 'x' && board[0][1] === 'x' && board[0][0] === 'empty' ||
+                     board[0][2] === 'x' && board[1][2] === 'x' && board[2][2] === 'empty' ||
                      board[2][2] === 'x' && board[2][0] === 'x' && board[2][1] === 'empty' ||
-                     board[2][0] === 'x' && board[0][0] === 'x' && board[1][0] === 'empty') {
+                     board[2][2] === 'x' && board[2][1] === 'x' && board[2][0] === 'empty' ||
+                     board[2][2] === 'x' && board[1][2] === 'x' && board[0][2] === 'empty' ||
+                     board[2][0] === 'x' && board[0][0] === 'x' && board[1][0] === 'empty' ||
+                     board[2][0] === 'x' && board[1][0] === 'x' && board[0][0] === 'empty' ||
+                     board[2][0] === 'x' && board[2][1] === 'x' && board[2][2] === 'empty') {
                         if (board[0][0] === 'x' && board[0][2] === 'x' && board[0][1] === 'empty') {
                             $('#b').css('cursor', 'default');
                             $('#b').html('<p>O</p>');
                             board[0][1] = 'o';
+                        } else if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'empty') {
+                            $('#c').css('cursor', 'default');
+                            $('#c').html('<p>O</p>');
+                            board[0][2] = 'o';
+                        } else if (board[0][0] === 'x' && board[1][0] === 'x' && board[2][0] === 'empty') {
+                            $('#g').css('cursor', 'default');
+                            $('#g').html('<p>O</p>');
+                            board[2][0] = 'o';
                         } else if (board[0][2] === 'x' && board[2][2] === 'x' && board[1][2] === 'empty') {
                             $('#f').css('cursor', 'default');
                             $('#f').html('<p>O</p>');
                             board[1][2] = 'o';
+                        } else if (board[0][2] === 'x' && board[0][1] === 'x' && board[0][0] === 'empty') {
+                            $('#a').css('cursor', 'default');
+                            $('#a').html('<p>O</p>');
+                            board[0][0] = 'o';
+                        } else if (board[0][2] === 'x' && board[1][2] === 'x' && board[2][2] === 'empty') {
+                            $('#i').css('cursor', 'default');
+                            $('#i').html('<p>O</p>');
+                            board[2][2] = 'o';
                         } else if (board[2][2] === 'x' && board[2][0] === 'x' && board[2][1] === 'empty') {
                             $('#h').css('cursor', 'default');
                             $('#h').html('<p>O</p>');
                             board[2][1] = 'o';
+                        } else if (board[2][2] === 'x' && board[2][1] === 'x' && board[2][0] === 'empty') {
+                            $('#g').css('cursor', 'default');
+                            $('#g').html('<p>O</p>');
+                            board[2][0] = 'o';
+                        } else if (board[2][2] === 'x' && board[1][2] === 'x' && board[0][2] === 'empty') {
+                            $('#c').css('cursor', 'default');
+                            $('#c').html('<p>O</p>');
+                            board[0][2] = 'o';
                         } else if (board[2][0] === 'x' && board[0][0] === 'x' && board[1][0] === 'empty') {
                             $('#d').css('cursor', 'default');
                             $('#d').html('<p>O</p>');
                             board[1][0] = 'o';
+                        } else if (board[2][0] === 'x' && board[1][0] === 'x' && board[0][0] === 'empty') {
+                            $('#a').css('cursor', 'default');
+                            $('#a').html('<p>O</p>');
+                            board[0][0] = 'o';
+                        } else if (board[2][0] === 'x' && board[2][1] === 'x' && board[2][2] === 'empty') {
+                            $('#i').css('cursor', 'default');
+                            $('#i').html('<p>O</p>');
+                            board[2][2] = 'o';
                         };//End of inner block
           } else {//Take an avalible edge tile
             if (board[0][1] === 'empty') {
@@ -842,12 +882,16 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                 };//End of inner block
           } else if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'empty' ||
                      board[0][0] === 'x' && board[1][0] === 'x' && board[2][0] === 'empty' ||
+                     board[0][0] === 'x' && board[0][2] === 'x' && board[0][1] === 'empty' ||
                      board[0][2] === 'x' && board[0][1] === 'x' && board[0][0] === 'empty' ||
                      board[0][2] === 'x' && board[1][2] === 'x' && board[2][2] === 'empty' ||
+                     board[0][2] === 'x' && board[2][2] === 'x' && board[1][2] === 'empty' ||
                      board[2][0] === 'x' && board[1][0] === 'x' && board[0][0] === 'empty' ||
                      board[2][0] === 'x' && board[2][1] === 'x' && board[2][2] === 'empty' ||
+                     board[2][0] === 'x' && board[0][0] === 'x' && board[1][0] === 'empty' ||
                      board[2][2] === 'x' && board[1][2] === 'x' && board[0][2] === 'empty' ||
-                     board[2][2] === 'x' && board[2][1] === 'x' && board[2][0] === 'empty') {
+                     board[2][2] === 'x' && board[2][1] === 'x' && board[2][0] === 'empty' ||
+                     board[2][2] === 'x' && board[2][0] === 'x' && board[2][1] === 'empty') {
                         if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'empty') {
                             $('#c').css('cursor', 'default');
                             $('#c').html('<p>O</p>');
@@ -856,6 +900,10 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                             $('#g').css('cursor', 'default');
                             $('#g').html('<p>O</p>');
                             board[2][0] = 'o';
+                        } else if (board[0][0] === 'x' && board[0][2] === 'x' && board[0][1] === 'empty') {
+                            $('#b').css('cursor', 'default');
+                            $('#b').html('<p>O</p>');
+                            board[0][1] = 'o';
                         } else if (board[0][2] === 'x' && board[0][1] === 'x' && board[0][0] === 'empty') {
                             $('#a').css('cursor', 'default');
                             $('#a').html('<p>O</p>');
@@ -864,6 +912,10 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                             $('#i').css('cursor', 'default');
                             $('#i').html('<p>O</p>');
                             board[2][2] = 'o';
+                        } else if (board[0][2] === 'x' && board[2][2] === 'x' && board[1][2] === 'empty') {
+                            $('#f').css('cursor', 'default');
+                            $('#f').html('<p>O</p>');
+                            board[1][2] = 'o';
                         } else if (board[2][0] === 'x' && board[1][0] === 'x' && board[0][0] === 'empty') {
                             $('#a').css('cursor', 'default');
                             $('#a').html('<p>O</p>');
@@ -872,6 +924,10 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                             $('#i').css('cursor', 'default');
                             $('#i').html('<p>O</p>');
                             board[2][2] = 'o';
+                        } else if (board[2][0] === 'x' && board[0][0] === 'x' && board[1][0] === 'empty') {
+                            $('#d').css('cursor', 'default');
+                            $('#d').html('<p>O</p>');
+                            board[1][0] = 'o';
                         } else if (board[2][2] === 'x' && board[1][2] === 'x' && board[0][2] === 'empty') {
                             $('#c').css('cursor', 'default');
                             $('#c').html('<p>O</p>');
@@ -880,6 +936,10 @@ $(document).on('ready', function() { //Only loads JavaScript once DOM is ready
                             $('#g').css('cursor', 'default');
                             $('#g').html('<p>O</p>');
                             board[2][0] = 'o';
+                        } else if (board[2][2] === 'x' && board[2][0] === 'x' && board[2][1] === 'empty') {
+                            $('#h').css('cursor', 'default');
+                            $('#h').html('<p>O</p>');
+                            board[2][1] = 'o';
                         };//End of inner block
           } else {//Go anywhere its going to be a draw
             if (board[0][0] === 'empty') {
