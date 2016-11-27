@@ -815,17 +815,25 @@ $(document).on('ready', function () {
             $('#i').css('cursor', 'default');
             $('#i').html('<p>X</p>');
             board[2][2] = 'x';
-          };
-        };
-      };
+          }; //End of inner block
+        }; //End of go anywhere
+      }; // End of turn three
 
       //Turn four for Computer
+      //Go anywhere its going to be a Draw
       if (turn === 4) {
         if (board[0][1] === 'empty') {
+
+          //Updateing CSS and HTML
           $('#b').css('cursor', 'default');
           $('#b').html('<p>X</p>');
+
+          //Victory only triggered if the last empty tile is an edge tile
           victory = true;
+
+          //Updateing array
           board[0][1] = 'x';
+
         } else if (board[1][0] === 'empty') {
           $('#d').css('cursor', 'default');
           $('#d').html('<p>X</p>');
@@ -857,8 +865,8 @@ $(document).on('ready', function () {
           $('#i').css('cursor', 'default');
           $('#i').html('<p>X</p>');
           board[2][2] = 'x';
-        };
-      }
+        }; //End of inner block
+      }; // End of turn four
 
       //Checking for Victory for X
       if (board[0][0] === 'x' && board[0][1] === 'x' && board[0][2] === 'x' ||
