@@ -296,11 +296,15 @@ $(document).on('ready', function () { //Only loads JavaScript once DOM is ready
     $('#op4').css('display', 'block'); //
   });
 
-  Menu Option 3
+  //Menu Option 3
   $('#op3').on('click', function() {
+
+    //Changing CSS from menu to game
     $('#welcome').css('display', 'none');
     $('table').css('display', 'table');
     $('.status').css('display', 'block');
+    $('.status').text('Humans Turn');
+
   });
 
   //Menu Option 4
