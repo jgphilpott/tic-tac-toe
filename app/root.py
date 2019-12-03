@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 
-app = Flask("Tic-Tac-Toe")
+app = Flask("Tic-Tac-Toe", template_folder="app/pages")
 
 @app.route("/")
 def root():
-    return "Welcome to Tic-Tac-Toe!"
+    return render_template("welcome.html")
 
 if __name__ == "__main__":
     app.jinja_env.auto_reload = True
