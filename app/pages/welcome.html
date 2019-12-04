@@ -2,6 +2,10 @@
 <html>
   <head>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/welcome.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/welcome.js') }}"></script>
+    <title>Welcome!</title>
   </head>
   <body>
     {% extends "pages/template.html" %}
