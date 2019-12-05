@@ -11,5 +11,17 @@ socketio = SocketIO(app)
 def root():
     return render_template("pages/welcome.html")
 
+@socketio.on("connect")
+def connect():
+    print("connected")
+
+@socketio.on("disconnect")
+def disconnect():
+    print("disconnected")
+
+@socketio.on("message")
+def message(msg):
+	print(msg)
+
 if __name__ == "__main__":
     socketio.run(app, debug=True)
