@@ -5,35 +5,40 @@ from flask_socketio import SocketIO
 
 app = Flask("Tic-Tac-Toe", template_folder="app", static_folder="app")
 app.config["SECRET_KEY"] = os.urandom(42).hex()
-socketio = SocketIO(app)
 
 @app.route("/")
 def root():
     return render_template("pages/welcome.html")
 
-@app.route("/HVH")
+@app.route("/human-options")
 def HVH():
     return render_template("pages/HVH.html")
 
-@app.route("/HVC")
+@app.route("/computer-options")
 def HVC():
     return render_template("pages/HVC.html")
 
-@app.route("/LOC")
+@app.route("/local-game")
 def LOC():
     return render_template("pages/LOC.html")
 
-@app.route("/NET")
+@app.route("/lobby")
+def LOB():
+    return render_template("pages/LOB.html")
+
+@app.route("/online-game")
 def NET():
     return render_template("pages/NET.html")
 
-@app.route("/MAN")
+@app.route("/human-first-game")
 def MAN():
     return render_template("pages/MAN.html")
 
-@app.route("/COM")
+@app.route("/computer-first-game")
 def COM():
     return render_template("pages/COM.html")
+
+socketio = SocketIO(app)
 
 @socketio.on("connect")
 def connect():
