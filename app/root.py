@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 
 app = Flask("Tic-Tac-Toe", template_folder="app", static_folder="app")
 app.config["SECRET_KEY"] = os.urandom(42).hex()
@@ -39,18 +39,19 @@ def COM():
     return render_template("pages/COM.html")
 
 socketio = SocketIO(app)
+clients = 0
 
 @socketio.on("connect")
 def connect():
-    print("connected")
+    global clients
+    clients += 1
+    emit("clientConnect", clients, broadcast=True)
 
 @socketio.on("disconnect")
 def disconnect():
-    print("disconnected")
-
-@socketio.on("message")
-def message(msg):
-	print(msg)
+    global clients
+    clients -= 1
+    emit("clientDisconnect", clients, broadcast=True)
 
 if __name__ == "__main__":
     socketio.run(app, debug=True)
