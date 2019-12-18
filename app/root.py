@@ -11,6 +11,30 @@ socketio = SocketIO(app)
 def root():
     return render_template("pages/welcome.html")
 
+@app.route("/HVH")
+def HVH():
+    return render_template("pages/HVH.html")
+
+@app.route("/HVC")
+def HVC():
+    return render_template("pages/HVC.html")
+
+@app.route("/LOC")
+def LOC():
+    return render_template("pages/LOC.html")
+
+@app.route("/NET")
+def NET():
+    return render_template("pages/NET.html")
+
+@app.route("/MAN")
+def MAN():
+    return render_template("pages/MAN.html")
+
+@app.route("/COM")
+def COM():
+    return render_template("pages/COM.html")
+
 @socketio.on("connect")
 def connect():
     print("connected")

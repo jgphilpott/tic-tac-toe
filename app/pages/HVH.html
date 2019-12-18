@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Options</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/HVH.css') }}">
+  </head>
+
+  <body>
+
+    {% extends "pages/template.html" %}
+    {% block content %}
+
+      <div class="content-box">
+
+        <h1 class="title">Human vs Human</h1>
+
+          <div class="option-box" id="LOC">
+            <h2 class="option-text">Local Game</h2>
+          </div>
+
+          <div class="option-box" id="NET">
+            <h2 class="option-text">Online Game</h2>
+          </div>
+
+      </div>
+
+      <script src="{{ url_for('static', filename='scripts/HVH.js') }}"></script>
+
+    {% endblock %}
+
+  </body>
+
+</html>
