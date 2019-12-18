@@ -4,7 +4,6 @@
   <head>
     <title>Welcome!</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/welcome.css') }}">
   </head>
 
   <body>
@@ -30,6 +29,7 @@
 
       </div>
 
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles/welcome.css') }}">
       <script src="{{ url_for('static', filename='scripts/welcome.js') }}"></script>
 
     {% endblock %}

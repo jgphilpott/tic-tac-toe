@@ -4,7 +4,6 @@
   <head>
     <title>Human Options</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/HVH.css') }}">
   </head>
 
   <body>
@@ -20,12 +19,15 @@
             <h2 class="option-text">Local Game</h2>
           </div>
 
-          <div class="option-box" id="LOB">
-            <h2 class="option-text">Online Game</h2>
-          </div>
+          <a href="/lobby">
+            <div class="option-box" id="LOB">
+              <h2 class="option-text">Online Game</h2>
+            </div>
+          </a>
 
       </div>
 
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles/HVH.css') }}">
       <script src="{{ url_for('static', filename='scripts/HVH.js') }}"></script>
 
     {% endblock %}
