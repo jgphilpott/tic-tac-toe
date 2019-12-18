@@ -1,5 +1,77 @@
-.title {
+@media screen and (min-width: 0px) {
 
-  top: 3%;
+  .title {
+
+    top: 0px;
+
+  }
+
+  #client-info,
+  #host-a-game {
+
+    position: relative;
+    color: white;
+    padding: 15px;
+    font-size: 14px;
+
+  }
+
+  #client-info {
+
+    float: left;
+  }
+
+  #host-a-game {
+
+    float: right;
+
+  }
+
+  #open-games {
+
+    position: relative;
+
+    top: 15%;
+    width: 100%;
+
+    border-top: 2px solid white;
+
+  }
+
+}
+
+@media screen and (min-width: 400px) {
+
+  #client-info,
+  #host-a-game {
+
+    padding: 20px;
+    font-size: 18px;
+
+  }
+
+}
+
+@media screen and (min-width: 600px) {
+
+  #client-info,
+  #host-a-game {
+
+    padding: 25px;
+    font-size: 22px;
+
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+
+  #client-info,
+  #host-a-game {
+
+    padding: 30px;
+    font-size: 26px;
+
+  }
 
 }
