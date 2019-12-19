@@ -7,7 +7,8 @@
   }
 
   #client-info,
-  #host-a-game {
+  #host-a-game,
+  #go-back {
 
     position: relative;
     color: white;
@@ -19,11 +20,66 @@
   #client-info {
 
     float: left;
+
   }
 
-  #host-a-game {
+  #host-a-game,
+  #go-back {
 
     float: right;
+
+  }
+
+  #go-back {
+
+    display: none;
+
+  }
+
+  #host-box {
+
+    position: absolute;
+    display: none;
+    margin: auto;
+
+    left:0; right:0;
+    bottom:15%;
+
+    width: 55%;
+    height: 45%;
+
+    border: 2px dotted white;
+    border-radius: 12px;
+
+    color: white;
+
+  }
+
+  #name-input {
+
+    position: absolute;
+    margin: auto;
+    width: 70%;
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+    left: 15%;
+    top: 25%;
+
+  }
+
+  input:focus {
+
+      outline: none;
+
+  }
+
+  #host-now {
+
+    position: relative;
+    text-align: center;
+    top: 55%;
+    font-size: 14px;
 
   }
 
@@ -33,20 +89,65 @@
 
     top: 15%;
     width: 100%;
+    height: auto;
 
     border-top: 2px solid white;
 
   }
+
+  .game-item,
+  .no-games {
+
+    position: absolute;
+    width: 100%;
+    color: white;
+    font-size: 15px;
+    padding: 5px;
+
+  }
+
+  .game-item {
+
+    border-bottom: 2px dotted white;
+
+  }
+
+  .no-games {
+
+    text-align: center;
+
+  }
+
+}
+
+@media screen and (min-width: 200px) {
+
+
 
 }
 
 @media screen and (min-width: 400px) {
 
   #client-info,
-  #host-a-game {
+  #host-a-game,
+  #go-back {
 
     padding: 20px;
     font-size: 18px;
+
+  }
+
+  #host-now {
+
+    font-size: 22px;
+
+  }
+
+  .game-item,
+  .no-games {
+
+    font-size: 18px;
+    padding: 8px;
 
   }
 
@@ -55,10 +156,25 @@
 @media screen and (min-width: 600px) {
 
   #client-info,
-  #host-a-game {
+  #host-a-game,
+  #go-back {
 
     padding: 25px;
     font-size: 22px;
+
+  }
+
+  #host-now {
+
+    font-size: 30px;
+
+  }
+
+  .game-item,
+  .no-games {
+
+    font-size: 21px;
+    padding: 11px;
 
   }
 
@@ -67,10 +183,25 @@
 @media screen and (min-width: 800px) {
 
   #client-info,
-  #host-a-game {
+  #host-a-game
+  #go-back {
 
     padding: 30px;
     font-size: 26px;
+
+  }
+
+  #host-now {
+
+    font-size: 36px;
+
+  }
+
+  .game-item,
+  .no-games {
+
+    font-size: 24px;
+    padding: 14px;
 
   }
 

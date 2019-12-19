@@ -17,8 +17,22 @@
 
         <p id="client-info"><span id="client-count">0 players </span>online</p>
         <p id="host-a-game">Host a Game</p>
+        <p id="go-back">Back</p>
 
-        <div id="open-games"></div>
+        <div id="host-box">
+          <input id="name-input" type="text" name="host-name" placeholder="Your Name">
+          <p id="host-now">Host</p>
+        </div>
+
+        <div id="open-games">
+          {% if games|length > 0 %}
+            {% for game in games %}
+              <div class="game-item"></div>
+            {% endfor %}
+          {% else %}
+            <div class="no-games">Sorry, no games yet.</div>
+          {% endif %}
+        </div>
 
       </div>
 

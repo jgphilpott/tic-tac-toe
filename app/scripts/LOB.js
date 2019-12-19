@@ -18,4 +18,18 @@ $(document).ready(function() {
     changeClientCount(clientCount)
   })
 
+  $("#host-a-game").click(function(){
+    $("#open-games").css("visibility", "hidden")
+    $(this).css("display", "none")
+    $("#go-back").css("display", "block")
+    $("#host-box").css("display", "block")
+  })
+
+  $("#go-back").click(function(){
+    $("#open-games").css("visibility", "visible")
+    $(this).css("display", "none")
+    $("#host-a-game").css("display", "block")
+    $("#host-box").css("display", "none")
+  })
+
 })
