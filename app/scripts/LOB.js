@@ -32,4 +32,25 @@ $(document).ready(function() {
     $("#host-box").css("display", "none")
   })
 
+  $("#name-input").keypress(function (event) {
+    if (event.key.replace(/[^A-Za-z0-9]/g,"") == "") {
+      event.preventDefault()
+    }
+  })
+
+  $("#host-now").click(function(){
+    var name = $("#name-input").val()
+    if (name != "") {
+      socket.emit("makeGame", {name: name + "s"})
+    }
+  })
+
+  socket.on("gameReady", function(token) {
+    window.location.href = "/online-game/" + token
+  })
+
+  socket.on("newGame", function(game) {
+    console.log("yolo")
+  })
+
 })

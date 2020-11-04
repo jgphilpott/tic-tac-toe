@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Online Game</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+  </head>
+
+  <body>
+
+    {% extends "pages/template.html" %}
+    {% block content %}
+
+      <div class="content-box"></div>
+
+      <link rel="stylesheet" href="{{ url_for('static', filename='styles/NET.css') }}">
+      <script src="{{ url_for('static', filename='scripts/NET.js') }}"></script>
+
+    {% endblock %}
+
+  </body>
+
+</html>
