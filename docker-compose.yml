@@ -3,4 +3,4 @@ web:
   volumes:
    - .:/root
   ports:
-   - "5000:5000"
+   - 5000:5000
